@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r5">
+    <folder id="0">
+        <file id="0" name="Head.png" width="250" height="250" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Stick.png" width="10" height="400" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="hangman">
+        <animation id="0" name="Wrong1x" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="1" name="Wrong2x" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="2" name="Wrong3x" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="3" name="Wrong4x" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="4" name="Wrong5x" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+        <animation id="5" name="Wrong6x" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="Head_001">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-121.005291" y="1036.243386"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="Stick_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" y="788.498168"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="Stick_002">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-4.942" y="390.104548" angle="346.379458" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="Stick_003">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="4.280884" y="387.73021" angle="13.00768" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="Stick_004">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="7.005419" y="788.398126" angle="24.491901" scale_y="1"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="Stick_005">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-5.266106" y="791.033797" angle="337.571222"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Hanging" length="1000" interval="100">
+            <mainline>
+                <key id="0"/>
+            </mainline>
+        </animation>
+    </entity>
+</spriter_data>
