@@ -101,3 +101,23 @@ ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
 const char *AssetManager::GetText(const char *key) {
     return _TextMap.at(key);
 }
+
+void AssetManager::DiscardImage(const char *key) {
+//    delete GetImage(key);
+//    _ImageMap.erase(key);
+}
+
+void AssetManager::DiscardSound(const char *key) {
+//    delete GetSound(key);
+//    _SoundMap.erase(key);
+}
+
+void AssetManager::DiscardFont(const char *key) {
+//    delete GetFont(key);
+//    _FontMap.erase(key);
+}
+
+void AssetManager::DiscardText(const char *key) {
+//    delete GetText(key);
+//    _TextMap.erase(key);
+}

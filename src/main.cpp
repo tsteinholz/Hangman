@@ -24,11 +24,11 @@
 
 #include <allegro5/allegro.h>
 
-#include <cstdio>
-
 #include "util/assetmanager.h"
+#include "scenes/scene.h"
+#include "scenes/mainmenu.h"
 
-const unsigned int SCREEN_W = 850, SCREEN_H = 650;
+Scene *Scene::Current = nullptr;
 
 int main() {
 
@@ -38,9 +38,7 @@ int main() {
     ALLEGRO_EVENT_QUEUE *queue;
     ALLEGRO_TIMER *timer;
 
-    ASSET_MANAGER; // Create the asset manager instance
-
-    display = al_create_display(SCREEN_W, SCREEN_H);
+    display = al_create_display(ASSET_MANAGER.SCREEN_W, ASSET_MANAGER.SCREEN_H);
     if (!display) {
         printf("al_create_display Failed!\n");
         exit(-1);
@@ -56,30 +54,39 @@ int main() {
 
     al_start_timer(timer);
 
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 50, "cubic");
+    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
+    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
     ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
 
     bool render = true, executing = true;
-    float bgx = SCREEN_W / 2, bgy = SCREEN_H / 2, bgvelx = -2 + (rand() % 4), bgvely = -2 + (rand() % 4);
+    float bgx = ASSET_MANAGER.SCREEN_W / 2,
+            bgy = ASSET_MANAGER.SCREEN_H / 2,
+            bgvelx = rand() % 2 ? -1.5f : 1.5f,
+            bgvely = rand() % 2 ? -1.5f : 1.5f;
+
+    Scene::Current = new MainMenu();
 
     while (executing) {
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
+        Scene::Current->Update(&event);
         switch (event.type) {
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 executing = false;
                 break;
             case ALLEGRO_EVENT_KEY_DOWN:
-                executing = !event.keyboard.keycode == ALLEGRO_KEY_ESCAPE;
+                executing = event.keyboard.keycode != ALLEGRO_KEY_ESCAPE;
                 break;
             case ALLEGRO_EVENT_TIMER:
-                render = true;
-                if (bgx + SCREEN_W >= al_get_bitmap_width(ASSET_MANAGER.GetImage("background"))) bgvelx = -bgvelx;
-                if (bgx <= 5) bgvelx = -bgvelx;
-                if (bgy + SCREEN_H >= al_get_bitmap_height(ASSET_MANAGER.GetImage("background"))) bgvely = -bgvely;
-                if (bgy <= 5) bgvely = -bgvely;
+                if (bgx + ASSET_MANAGER.SCREEN_W >= al_get_bitmap_width(ASSET_MANAGER.GetImage("background")))
+                    bgvelx = -bgvelx;
+                else if (bgx <= 5) bgvelx = -bgvelx;
+                if (bgy + ASSET_MANAGER.SCREEN_H >= al_get_bitmap_height(ASSET_MANAGER.GetImage("background")))
+                    bgvely = -bgvely;
+                else if (bgy <= 5) bgvely = -bgvely;
                 bgx += bgvelx;
                 bgy += bgvely;
+                render = true;
                 break;
             default:
                 break;
@@ -92,13 +99,12 @@ int main() {
             al_draw_scaled_bitmap(
                     ASSET_MANAGER.GetImage("background"),
                     bgx, bgy,
-                    SCREEN_W, SCREEN_H,
+                    ASSET_MANAGER.SCREEN_W, ASSET_MANAGER.SCREEN_H,
                     0, 0,
-                    SCREEN_W, SCREEN_H,
+                    ASSET_MANAGER.SCREEN_W, ASSET_MANAGER.SCREEN_H,
                     0);
 
-            al_draw_text(ASSET_MANAGER.GetFont("cubic"), al_map_rgb(255, 255, 255), (SCREEN_W / 2), 25,
-                         ALLEGRO_ALIGN_CENTRE, "Hangman");
+            Scene::Current->Render();
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
@@ -106,6 +112,5 @@ int main() {
         render = false;
     }
     al_destroy_display(display);
-
     return 0;
 }

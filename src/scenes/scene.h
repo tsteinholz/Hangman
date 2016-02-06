@@ -25,17 +25,30 @@
 #ifndef HANGMAN_SCENE_H
 #define HANGMAN_SCENE_H
 
-#include <allegro5/events.h>
+#include "../util/assetmanager.h"
 
+//-----------------------------------------------------------------------------
+// Purpose: Represents and area in the game such as the main game, the menu or
+//          just simply the credits. Works as a way to organize all of the
+//          different types of screens you need in a game.
+//-----------------------------------------------------------------------------
 class Scene {
 
 public:
+    //-----------------------------------------------------------------------------
+    // Purpose: What-ever scene is in this variable will get hangled
+    //-----------------------------------------------------------------------------
+    static Scene *Current;
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Render the scene
+    //-----------------------------------------------------------------------------
     virtual void Render() = 0;
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Update the scene
+    //-----------------------------------------------------------------------------
     virtual void Update(ALLEGRO_EVENT *event) = 0;
-
-protected:
 
 };
 

@@ -92,6 +92,42 @@ public:
     static bool LoadText(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
+    // Purpose: Destroys an asset that is presumably no longer needed by the game.
+    //          This function is good for performance so that you don't use more
+    //          RAM than you need to.
+    //
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void DiscardImage(const char *key);
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Destroys an asset that is presumably no longer needed by the game.
+    //          This function is good for performance so that you don't use more
+    //          RAM than you need to.
+    //
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void DiscardSound(const char *key);
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Destroys an asset that is presumably no longer needed by the game.
+    //          This function is good for performance so that you don't use more
+    //          RAM than you need to.
+    //
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void DiscardFont(const char *key);
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Destroys an asset that is presumably no longer needed by the game.
+    //          This function is good for performance so that you don't use more
+    //          RAM than you need to.
+    //
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void DiscardText(const char *key);
+
+    //-----------------------------------------------------------------------------
     // Purpose: Returns the image
     //
     // param key: The string used to store the asset in memory
@@ -118,6 +154,8 @@ public:
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
     static const char *GetText(const char *key);
+
+    const unsigned int SCREEN_W = 850, SCREEN_H = 650;
 
 private:
 

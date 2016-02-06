@@ -27,9 +27,13 @@
 
 #include "scene.h"
 
-class mainmenu : public Scene {
+class MainMenu : public Scene {
 
 public:
+
+    MainMenu();
+
+    virtual ~MainMenu();
 
     virtual void Render() override;
 
