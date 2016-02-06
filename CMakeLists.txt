@@ -5,12 +5,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 set(SOURCE_FILES
-        main.cpp)
+        src/main.cpp
+        src/scenes/scene.h
+        src/gameobjects/man.cpp
+        src/gameobjects/man.h
+        src/scenes/mainmenu.cpp
+        src/scenes/mainmenu.h
+        src/util/assetmanager.cpp
+        src/util/assetmanager.h
+        )
 
 add_executable(Hangman ${SOURCE_FILES})
 
 include_directories(${ALLEGRO_INCLUDE_DIR})
-target_link_libraries(Hangman allegro allegro_image allegro_font
+target_link_libraries(Hangman
+        allegro allegro_image allegro_font
         allegro_primitives allegro_ttf allegro_audio
         allegro_dialog allegro_memfile allegro_acodec
-        allegro_color allegro_main allegro_physfs)
+        allegro_color allegro_main allegro_physfs
+        )
