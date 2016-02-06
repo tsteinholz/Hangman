@@ -13,7 +13,14 @@ set(SOURCE_FILES
         src/scenes/mainmenu.h
         src/util/assetmanager.cpp
         src/util/assetmanager.h
-        src/scenes/game.cpp src/scenes/game.h)
+        src/scenes/game.cpp
+        src/scenes/game.h
+        src/gameobjects/ui/button.cpp
+        src/gameobjects/ui/button.h
+        src/gameobjects/ui/letter.cpp
+        src/gameobjects/ui/letter.h
+        src/gameobjects/gameobject.h
+        )
 
 add_executable(Hangman ${SOURCE_FILES})
 

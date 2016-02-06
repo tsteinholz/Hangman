@@ -53,6 +53,7 @@ bool AssetManager::LoadImage(const char *file, const char *key) {
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+    printf("DEBUG: Loaded %s\n", key); //debug
     _ImageMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
     return true;
 }
@@ -64,6 +65,7 @@ bool AssetManager::LoadSound(const char *file, const char *key) {
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+    printf("DEBUG: Loaded %s\n", key); //debug
     _SoundMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
     return true;
 }
@@ -75,6 +77,7 @@ bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+    printf("DEBUG: Loaded %s\n", key); //debug
     _FontMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_FONT>>(key, x));
     return true;
 }
@@ -83,6 +86,7 @@ bool AssetManager::LoadText(const char *file, const char *key) {
     key = !key ? file : key;
     // TODO
     //if (!x) { printf("Failed to load %s", file); return false;}
+    printf("DEBUG: Loaded %s\n", key); //debug
     return false;
 }
 

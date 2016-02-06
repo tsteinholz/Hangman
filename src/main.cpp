@@ -54,8 +54,6 @@ int main() {
 
     al_start_timer(timer);
 
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
     ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
 
     bool render = true, executing = true;
