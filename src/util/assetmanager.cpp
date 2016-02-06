@@ -1,5 +1,10 @@
 #include "assetmanager.h"
 
+std::map<const char *, ALLEGRO_BITMAP *> AssetManager::_ImageMap = {};
+std::map<const char *, ALLEGRO_SAMPLE *> AssetManager::_SoundMap = {};
+std::map<const char *, ALLEGRO_FONT *> AssetManager::_FontMap = {};
+std::map<const char *, const char *> AssetManager::_TextMap = {};
+
 AssetManager::AssetManager() {
     if (!al_init()) {
         printf("al_init Failed!\n");
@@ -43,39 +48,56 @@ AssetManager &AssetManager::GetAssetManager() {
 
 bool AssetManager::LoadImage(const char *file, const char *key) {
     key = !key ? file : key;
-    return false;
+    ALLEGRO_BITMAP *x = al_load_bitmap(file);
+    if (!x) {
+        printf("Failed to load %s\n", file);
+        return false;
+    }
+    _ImageMap.insert(std::pair<const char *, ALLEGRO_BITMAP *>(key, x));
+    return true;
 }
 
 bool AssetManager::LoadSound(const char *file, const char *key) {
     key = !key ? file : key;
-
-    return false;
+    ALLEGRO_SAMPLE *x = al_load_sample(file);
+    if (!x) {
+        printf("Failed to load %s\n", file);
+        return false;
+    }
+    _SoundMap.insert(std::pair<const char *, ALLEGRO_SAMPLE *>(key, x));
+    return true;
 }
 
-bool AssetManager::LoadFont(const char *file, const char *key) {
+bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key) {
     key = !key ? file : key;
-
-    return false;
+    ALLEGRO_FONT *x = al_load_font(file, size, 0);
+    if (!x) {
+        printf("Failed to load %s", file);
+        return false;
+    }
+    _FontMap.insert(std::pair<const char *, ALLEGRO_FONT *>(key, x));
+    return true;
 }
 
 bool AssetManager::LoadText(const char *file, const char *key) {
     key = !key ? file : key;
-
+    // TODO
+    //if (!x) { printf("Failed to load %s", file); return false;}
     return false;
 }
 
 ALLEGRO_BITMAP *AssetManager::GetImage(const char *key) {
-    return nullptr;
+    return _ImageMap.at(key);
 }
 
 ALLEGRO_SAMPLE *AssetManager::GetSound(const char *key) {
-    return nullptr;
+    return _SoundMap.at(key);
 }
 
 ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
-    return nullptr;
+    return _FontMap.at(key);
 }
 
 const char *AssetManager::GetText(const char *key) {
-    return nullptr;
+    return _TextMap.at(key);
 }

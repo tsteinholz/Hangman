@@ -76,9 +76,10 @@ public:
     //          the data type provided.
     //
     // param file: The location on disk of the asset
+    // param size: The font size you need
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static bool LoadFont(const char *file, const char *key = "");
+    static bool LoadFont(const char *file, unsigned int size, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Load some text for the game to use. This function will store an

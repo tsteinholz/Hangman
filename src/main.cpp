@@ -56,9 +56,11 @@ int main() {
 
     al_start_timer(timer);
 
-    // TODO: Load in assets
+    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 50, "cubic");
+    ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
 
     bool render = true, executing = true;
+    float bgx = SCREEN_W / 2, bgy = SCREEN_H / 2, bgvelx = -3 + (rand() % 6), bgvely = -3 + (rand() % 6);
 
     while (executing) {
         ALLEGRO_EVENT event;
@@ -72,6 +74,14 @@ int main() {
                 break;
             case ALLEGRO_EVENT_TIMER:
                 render = true;
+                if (bgx + SCREEN_W >= al_get_bitmap_width(ASSET_MANAGER.GetImage("background"))) bgvelx = -bgvelx;
+                if (bgx <= .5) bgvelx = -bgvelx;
+                if (bgy + SCREEN_H >= al_get_bitmap_height(ASSET_MANAGER.GetImage("background"))) bgvely = -bgvely;
+                if (bgy <= .5) bgvely = -bgvely;
+                bgx += bgvelx;
+                bgy += bgvely;
+                break;
+            default:
                 break;
         }
         if (al_is_event_queue_empty(queue) && render) {
@@ -79,6 +89,17 @@ int main() {
             al_set_target_bitmap(al_get_backbuffer(display));
             ////////////////////////////////////////////////////////////////////
 
+            // TODO: change with slowly moving background
+            al_draw_scaled_bitmap(
+                    ASSET_MANAGER.GetImage("background"),
+                    bgx, bgy,
+                    SCREEN_W, SCREEN_H,
+                    0, 0,
+                    SCREEN_W, SCREEN_H,
+                    0);
+
+            al_draw_text(ASSET_MANAGER.GetFont("cubic"), al_map_rgb(255, 255, 255), (SCREEN_W / 2), 25,
+                         ALLEGRO_ALIGN_CENTRE, "Hangman");
 
             ////////////////////////////////////////////////////////////////////
             al_flip_display();
