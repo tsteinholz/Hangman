@@ -61,8 +61,8 @@ int main() {
     bool render = true, executing = true;
     float bgx = ASSET_MANAGER.SCREEN_W / 2,
             bgy = ASSET_MANAGER.SCREEN_H / 2,
-            bgvelx = rand() % 2 ? -1.5f : 1.5f,
-            bgvely = rand() % 2 ? -1.5f : 1.5f;
+            bgvelx = rand() % 2 ? -.5f : .5f,
+            bgvely = rand() % 2 ? -.5f : .5f;
 
     Scene::Current = new MainMenu();
 

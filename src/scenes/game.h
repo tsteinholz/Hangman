@@ -22,19 +22,18 @@
 // SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#ifndef HANGMAN_MAINMENU_H
-#define HANGMAN_MAINMENU_H
+#ifndef HANGMAN_GAME_H
+#define HANGMAN_GAME_H
 
 #include "scene.h"
-#include "game.h"
 
-class MainMenu : public Scene {
+class Game : public Scene {
 
 public:
 
-    MainMenu();
+    Game();
 
-    virtual ~MainMenu();
+    virtual ~Game();
 
     virtual void Render() override;
 
@@ -43,4 +42,4 @@ public:
 };
 
 
-#endif //HANGMAN_MAINMENU_H
+#endif // HANGMAN_GAME_H

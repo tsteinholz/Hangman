@@ -35,6 +35,7 @@
 
 #include <cstdio>
 #include <map>
+#include <memory>
 
 #define ASSET_MANAGER AssetManager::GetAssetManager()
 
@@ -163,9 +164,9 @@ private:
 
     virtual ~AssetManager();
 
-    static std::map<const char *, ALLEGRO_BITMAP *> _ImageMap;
-    static std::map<const char *, ALLEGRO_SAMPLE *> _SoundMap;
-    static std::map<const char *, ALLEGRO_FONT *> _FontMap;
+    static std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> _ImageMap;
+    static std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> _SoundMap;
+    static std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> _FontMap;
     static std::map<const char *, const char *> _TextMap;
 };
 

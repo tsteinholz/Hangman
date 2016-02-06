@@ -1,8 +1,8 @@
 #include "assetmanager.h"
 
-std::map<const char *, ALLEGRO_BITMAP *> AssetManager::_ImageMap = {};
-std::map<const char *, ALLEGRO_SAMPLE *> AssetManager::_SoundMap = {};
-std::map<const char *, ALLEGRO_FONT *> AssetManager::_FontMap = {};
+std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> AssetManager::_ImageMap = {};
+std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> AssetManager::_SoundMap = {};
+std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> AssetManager::_FontMap = {};
 std::map<const char *, const char *> AssetManager::_TextMap = {};
 
 AssetManager::AssetManager() {
@@ -27,7 +27,7 @@ AssetManager::AssetManager() {
         exit(-1);
     }
     if (!al_init_primitives_addon()) {
-        printf("al_init_primitives_addon Failed!\n");
+        fprintf(stderr, "al_init_primitives_addon Failed!\n");
         exit(-1);
     }
 
@@ -48,34 +48,34 @@ AssetManager &AssetManager::GetAssetManager() {
 
 bool AssetManager::LoadImage(const char *file, const char *key) {
     key = !key ? file : key;
-    ALLEGRO_BITMAP *x = al_load_bitmap(file);
+    std::shared_ptr<ALLEGRO_BITMAP> x(al_load_bitmap(file), al_destroy_bitmap);
     if (!x) {
-        printf("Failed to load %s\n", file);
+        fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
-    _ImageMap.insert(std::pair<const char *, ALLEGRO_BITMAP *>(key, x));
+    _ImageMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
     return true;
 }
 
 bool AssetManager::LoadSound(const char *file, const char *key) {
     key = !key ? file : key;
-    ALLEGRO_SAMPLE *x = al_load_sample(file);
+    std::shared_ptr<ALLEGRO_SAMPLE> x(al_load_sample(file), al_destroy_sample);
     if (!x) {
-        printf("Failed to load %s\n", file);
+        fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
-    _SoundMap.insert(std::pair<const char *, ALLEGRO_SAMPLE *>(key, x));
+    _SoundMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
     return true;
 }
 
 bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key) {
     key = !key ? file : key;
-    ALLEGRO_FONT *x = al_load_font(file, size, 0);
+    std::shared_ptr<ALLEGRO_FONT> x(al_load_font(file, size, 0), al_destroy_font);
     if (!x) {
-        printf("Failed to load %s", file);
+        fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
-    _FontMap.insert(std::pair<const char *, ALLEGRO_FONT *>(key, x));
+    _FontMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_FONT>>(key, x));
     return true;
 }
 
@@ -87,15 +87,15 @@ bool AssetManager::LoadText(const char *file, const char *key) {
 }
 
 ALLEGRO_BITMAP *AssetManager::GetImage(const char *key) {
-    return _ImageMap.at(key);
+    return _ImageMap.at(key).get();
 }
 
 ALLEGRO_SAMPLE *AssetManager::GetSound(const char *key) {
-    return _SoundMap.at(key);
+    return _SoundMap.at(key).get();
 }
 
 ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
-    return _FontMap.at(key);
+    return _FontMap.at(key).get();
 }
 
 const char *AssetManager::GetText(const char *key) {
@@ -103,21 +103,17 @@ const char *AssetManager::GetText(const char *key) {
 }
 
 void AssetManager::DiscardImage(const char *key) {
-//    delete GetImage(key);
-//    _ImageMap.erase(key);
+    _ImageMap.erase(key);
 }
 
 void AssetManager::DiscardSound(const char *key) {
-//    delete GetSound(key);
-//    _SoundMap.erase(key);
+    _SoundMap.erase(key);
 }
 
 void AssetManager::DiscardFont(const char *key) {
-//    delete GetFont(key);
-//    _FontMap.erase(key);
+    _FontMap.erase(key);
 }
 
 void AssetManager::DiscardText(const char *key) {
-//    delete GetText(key);
-//    _TextMap.erase(key);
+    _TextMap.erase(key);
 }

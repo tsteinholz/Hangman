@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/scenes/scene.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
