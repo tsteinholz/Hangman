@@ -60,7 +60,7 @@ int main() {
     ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
 
     bool render = true, executing = true;
-    float bgx = SCREEN_W / 2, bgy = SCREEN_H / 2, bgvelx = -3 + (rand() % 6), bgvely = -3 + (rand() % 6);
+    float bgx = SCREEN_W / 2, bgy = SCREEN_H / 2, bgvelx = -2 + (rand() % 4), bgvely = -2 + (rand() % 4);
 
     while (executing) {
         ALLEGRO_EVENT event;
@@ -75,9 +75,9 @@ int main() {
             case ALLEGRO_EVENT_TIMER:
                 render = true;
                 if (bgx + SCREEN_W >= al_get_bitmap_width(ASSET_MANAGER.GetImage("background"))) bgvelx = -bgvelx;
-                if (bgx <= .5) bgvelx = -bgvelx;
+                if (bgx <= 5) bgvelx = -bgvelx;
                 if (bgy + SCREEN_H >= al_get_bitmap_height(ASSET_MANAGER.GetImage("background"))) bgvely = -bgvely;
-                if (bgy <= .5) bgvely = -bgvely;
+                if (bgy <= 5) bgvely = -bgvely;
                 bgx += bgvelx;
                 bgy += bgvely;
                 break;
@@ -89,7 +89,6 @@ int main() {
             al_set_target_bitmap(al_get_backbuffer(display));
             ////////////////////////////////////////////////////////////////////
 
-            // TODO: change with slowly moving background
             al_draw_scaled_bitmap(
                     ASSET_MANAGER.GetImage("background"),
                     bgx, bgy,

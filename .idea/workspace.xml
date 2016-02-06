@@ -11,14 +11,9 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49b96f88-1b74-404a-a73d-4e48e875e0c9" name="Default" comment="architecture">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/graphics/Big Reactors Construction.xls" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/graphics/Brackets.1.5.Extract.64-bit.deb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/graphics/NewProject.autosave.scml" afterPath="" />
+    <list default="true" id="49b96f88-1b74-404a-a73d-4e48e875e0c9" name="Default" comment="got asset manager to work">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.cpp" afterPath="$PROJECT_DIR$/src/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/assetmanager.cpp" afterPath="$PROJECT_DIR$/src/util/assetmanager.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/assetmanager.h" afterPath="$PROJECT_DIR$/src/util/assetmanager.h" />
     </list>
     <list id="6bc503ce-442a-4a19-af35-a17e77e526b3" name="New changelist" comment="" />
     <ignored path="Hangman.iws" />
@@ -40,11 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="93" column="30" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#1303#1332#0" expanded="true" />
               </folding>
@@ -52,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetmanager.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assetmanager.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/assetmanager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9229075">
-              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="79" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
               <folding>
                 <element signature="e#1366#1395#0" expanded="true" />
               </folding>
@@ -68,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/util/assetmanager.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+              <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -91,8 +86,8 @@
         <option value="$PROJECT_DIR$/src/scenes/mainmenu.h" />
         <option value="$PROJECT_DIR$/src/gameobjects/man.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/src/util/assetmanager.h" />
         <option value="$PROJECT_DIR$/src/util/assetmanager.cpp" />
+        <option value="$PROJECT_DIR$/src/util/assetmanager.h" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
       </list>
     </option>
@@ -331,7 +326,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454725982167</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="got asset manager to work">
+      <created>1454738596414</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1454738596414</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -374,7 +375,8 @@
     <MESSAGE value="ugly,  but works on linux" />
     <MESSAGE value="fixed up main, on deck: assets" />
     <MESSAGE value="architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="architecture" />
+    <MESSAGE value="got asset manager to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="got asset manager to work" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -547,7 +549,7 @@
     <entry file="file://$PROJECT_DIR$/src/util/assetmanager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+          <caret line="63" column="35" selection-start-line="63" selection-start-column="35" selection-end-line="63" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -557,22 +559,22 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/src/util/assetmanager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="30" selection-start-line="93" selection-start-column="30" selection-end-line="93" selection-end-column="30" />
+          <caret line="40" column="79" selection-start-line="40" selection-start-column="79" selection-end-line="40" selection-end-column="79" />
           <folding>
-            <element signature="e#1303#1332#0" expanded="true" />
+            <element signature="e#1366#1395#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/assetmanager.h">
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9229075">
-          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1366#1395#0" expanded="true" />
+            <element signature="e#1303#1332#0" expanded="true" />
           </folding>
         </state>
       </provider>
