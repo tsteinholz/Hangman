@@ -25,12 +25,24 @@
 #ifndef HANGMAN_GAMEOBJECT_H
 #define HANGMAN_GAMEOBJECT_H
 
+#include "../util/assetmanager.h"
+
 //-----------------------------------------------------------------------------
 // Purpose: Represents a basic object in the game that can be rendered and
 //          requires systematic event based updating
 //-----------------------------------------------------------------------------
 class GameObject {
 public:
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Render the scene
+    //-----------------------------------------------------------------------------
+    virtual void Render() = 0;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Update the scene
+    //-----------------------------------------------------------------------------
+    virtual void Update(ALLEGRO_EVENT *event) = 0;
 
 protected:
 
