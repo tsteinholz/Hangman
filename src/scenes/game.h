@@ -25,6 +25,9 @@
 #ifndef HANGMAN_GAME_H
 #define HANGMAN_GAME_H
 
+#include <memory>
+#include <vector>
+
 #include "scene.h"
 
 class Game : public Scene {
@@ -39,6 +42,8 @@ public:
 
     virtual void Update(ALLEGRO_EVENT *event) override;
 
+protected:
+    std::vector<std::shared_ptr<Button>> Alphabet;
 };
 
 

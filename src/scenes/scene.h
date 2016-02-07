@@ -26,6 +26,7 @@
 #define HANGMAN_SCENE_H
 
 #include "../util/assetmanager.h"
+#include "../gameobjects/ui/button.h"
 
 //-----------------------------------------------------------------------------
 // Purpose: Represents and area in the game such as the main game, the menu or
@@ -39,6 +40,15 @@ public:
     // Purpose: What-ever scene is in this variable will get handled
     //-----------------------------------------------------------------------------
     static Scene *Current;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: The best way to change scene giving the scene parent class the
+    //          over-watch
+    //-----------------------------------------------------------------------------
+    static inline void SetScene(Scene *scene) {
+        delete Current;
+        Current = scene;
+    }
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the value of the executing variable since it can't be

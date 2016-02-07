@@ -20,6 +20,8 @@ set(SOURCE_FILES
         src/gameobjects/ui/letter.cpp
         src/gameobjects/ui/letter.h
         src/gameobjects/gameobject.h
+        src/scenes/help.cpp
+        src/scenes/help.h
         )
 
 add_executable(Hangman ${SOURCE_FILES})

@@ -4,19 +4,21 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/util/assetmanager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/util/assetmanager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/help.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/help.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/scene.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/letter.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/letter.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/letter.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/gameobject.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/scenes/scene.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/scenes/game.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

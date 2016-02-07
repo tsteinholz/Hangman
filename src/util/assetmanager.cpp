@@ -108,16 +108,20 @@ const char *AssetManager::GetText(const char *key) {
 
 void AssetManager::DiscardImage(const char *key) {
     _ImageMap.erase(key);
+    printf("DEBUG: Discarded %s\n", key); //debug
 }
 
 void AssetManager::DiscardSound(const char *key) {
     _SoundMap.erase(key);
+    printf("DEBUG: Discarded %s\n", key); //debug
 }
 
 void AssetManager::DiscardFont(const char *key) {
     _FontMap.erase(key);
+    printf("DEBUG: Discarded %s\n", key); //debug
 }
 
 void AssetManager::DiscardText(const char *key) {
     _TextMap.erase(key);
+    printf("DEBUG: Discarded %s\n", key); //debug
 }

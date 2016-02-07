@@ -27,7 +27,7 @@
 
 #include "scene.h"
 #include "game.h"
-#include "../gameobjects/ui/button.h"
+#include "help.h"
 
 class MainMenu : public Scene {
 
@@ -42,9 +42,9 @@ public:
     virtual void Update(ALLEGRO_EVENT *event) override;
 
 protected:
-    Button *Play;
-    Button *Help;
-    Button *Quit;
+    Button *btn_Play;
+    Button *btn_Help;
+    Button *btn_Quit;
 
 };
 

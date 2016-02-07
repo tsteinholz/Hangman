@@ -22,39 +22,24 @@
 // SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#ifndef HANGMAN_BUTTON_H
-#define HANGMAN_BUTTON_H
+#ifndef HANGMAN_HELP_H
+#define HANGMAN_HELP_H
 
-#include "../gameobject.h"
+#include "scene.h"
 
-class Button : public GameObject {
+class Help : public Scene {
 
 public:
 
-    Button(char *text, ALLEGRO_FONT *font, float x, float y);
+    Help();
 
-    virtual ~Button();
+    virtual ~Help();
 
-    bool Active, Hover;
+    virtual void Render() override;
 
-    virtual void Render();
+    virtual void Update(ALLEGRO_EVENT *event) override;
 
-    virtual void Update(ALLEGRO_EVENT *event);
-
-    const ALLEGRO_COLOR ENABLED_COLOR = al_map_rgb(255, 255, 255);
-    const ALLEGRO_COLOR DIABLED_COLOR = al_map_rgb(0, 255, 255);
-    const ALLEGRO_COLOR HOVER_COLOR = al_map_rgb(0, 255, 255);
-    const ALLEGRO_COLOR CLICKED_COLOR = al_map_rgb(0, 0, 255);
-    const ALLEGRO_COLOR DEBUG_COLOR = al_map_rgb(255, 0, 255);
-
-    // TODO : Add ability to disable the button
-    // TODO : Add the ability to cross out a button with a cubic red X
-
-protected:
-
-    ALLEGRO_FONT *_Font;
-    char *_Text;
-    float _X, _Y;
 };
 
-#endif //HANGMAN_BUTTON_H
+
+#endif //HANGMAN_HELP_H
