@@ -56,7 +56,7 @@ int main() {
 
     ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
 
-    bool render = true, executing = true;
+    bool render = true;
     float bgx = ASSET_MANAGER.SCREEN_W / 2,
             bgy = ASSET_MANAGER.SCREEN_H / 2,
             bgvelx = rand() % 2 ? -.5f : .5f,
@@ -64,16 +64,16 @@ int main() {
 
     Scene::Current = new MainMenu();
 
-    while (executing) {
+    while (Scene::GetExe()) {
         ALLEGRO_EVENT event;
         al_wait_for_event(queue, &event);
         Scene::Current->Update(&event);
         switch (event.type) {
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                executing = false;
+                Scene::SetExe(false);
                 break;
             case ALLEGRO_EVENT_KEY_DOWN:
-                executing = event.keyboard.keycode != ALLEGRO_KEY_ESCAPE;
+                Scene::SetExe(event.keyboard.keycode != ALLEGRO_KEY_ESCAPE);
                 break;
             case ALLEGRO_EVENT_TIMER:
                 if (bgx + ASSET_MANAGER.SCREEN_W >= al_get_bitmap_width(ASSET_MANAGER.GetImage("background")))

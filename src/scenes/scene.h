@@ -36,9 +36,25 @@ class Scene {
 
 public:
     //-----------------------------------------------------------------------------
-    // Purpose: What-ever scene is in this variable will get hangled
+    // Purpose: What-ever scene is in this variable will get handled
     //-----------------------------------------------------------------------------
     static Scene *Current;
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Returns the value of the executing variable since it can't be
+    //          read outside of this class since it is static
+    //-----------------------------------------------------------------------------
+    static inline bool GetExe() {
+        return Executing;
+    }
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Sets the value of the executing variable since outside classes cant
+    //          access this variable directly
+    //-----------------------------------------------------------------------------
+    static inline void SetExe(bool x) {
+        Executing = x;
+    }
 
     //-----------------------------------------------------------------------------
     // Purpose: Render the scene
@@ -50,6 +66,12 @@ public:
     //-----------------------------------------------------------------------------
     virtual void Update(ALLEGRO_EVENT *event) = 0;
 
+protected:
+
+    //-----------------------------------------------------------------------------
+    // Purpose: If the game is executing or not
+    //-----------------------------------------------------------------------------
+    static bool Executing;
 };
 
 #endif //HANGMAN_SCENE_H

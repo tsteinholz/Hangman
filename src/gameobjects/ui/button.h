@@ -31,11 +31,11 @@ class Button : public GameObject {
 
 public:
 
-    Button(char *text, ALLEGRO_FONT *font, float x, float y, float x2, float y2);
+    Button(char *text, ALLEGRO_FONT *font, float x, float y, float width, float height);
 
     virtual ~Button();
 
-    bool Active;
+    bool Active, Hover;
 
     virtual void Render();
 
@@ -45,7 +45,7 @@ protected:
 
     ALLEGRO_FONT *_Font;
     char *_Text;
-    float _X, _Y, _X2, _Y2;
+    float _X, _Y, _Width, _Height;
 };
 
 #endif //HANGMAN_BUTTON_H

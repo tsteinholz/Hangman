@@ -43,6 +43,8 @@ public:
 
 protected:
     Button *Play;
+    Button *Help;
+    Button *Quit;
 
 };
 

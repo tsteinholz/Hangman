@@ -1,7 +1,7 @@
 #include "button.h"
 
-Button::Button(char *text, ALLEGRO_FONT *font, float x, float y, float x2, float y2) :
-        _Text(text), _Font(font), _X(x), _Y(y), _X2(x2), _Y2(y2) {
+Button::Button(char *text, ALLEGRO_FONT *font, float x, float y, float width, float height) :
+        _Text(text), _Font(font), _X(x), _Y(y), _Width(width), _Height(height), Active(false), Hover(false) {
 
 }
 
@@ -10,15 +10,15 @@ Button::~Button() {
 }
 
 void Button::Render() {
-    al_draw_text(_Font, al_map_rgb(255, 255, 255), _X, _Y, ALLEGRO_ALIGN_CENTER, _Text);
-    al_draw_rectangle(_X, _Y, _X2, _Y2, al_map_rgb(255, 0, 255), 2); // DEBUG
+    al_draw_text(_Font, Hover ? al_map_rgb(0, 255, 255) : al_map_rgb(255, 255, 255), _X, _Y, ALLEGRO_ALIGN_CENTER,
+                 _Text);
+//    al_draw_rectangle(_X + (_Width / 2), _Y + 5, _X - (_Width / 2), _Y + (_Height) + 5, al_map_rgb(255, 0, 255), 2);
 }
 
 void Button::Update(ALLEGRO_EVENT *event) {
     if (event->type == ALLEGRO_EVENT_MOUSE_AXES) {
-        if (event->mouse.y >= _Y && event->mouse.y <= _Y2)
-            Active = event->mouse.x >= _X && event->mouse.x <= _X2;
-        else
-            Active = false;
+        Hover = ((event->mouse.x >= _X - (_Width / 2)) && (event->mouse.x <= _X + (_Width / 2))) &&
+                ((event->mouse.y >= _Y) && (event->mouse.y <= _Y + (_Width / 2)));
     }
+    Active = event->type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && Hover;
 }

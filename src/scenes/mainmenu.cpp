@@ -1,11 +1,15 @@
 #include "mainmenu.h"
 
+bool Scene::Executing = true;
+
 MainMenu::MainMenu() {
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
 
-    Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 200, 0, 0);
+    Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250, 60, 36);
+    Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300, 60, 36);
+    Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350, 60, 36);
 }
 
 MainMenu::~MainMenu() {
@@ -21,16 +25,17 @@ void MainMenu::Render() {
                  ASSET_MANAGER.SCREEN_W - 5, ASSET_MANAGER.SCREEN_H - 30,
                  ALLEGRO_ALIGN_RIGHT, "by Thomas Steinholz");
 
-    // TODO : Add buttons
-    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255), (ASSET_MANAGER.SCREEN_W / 2), 250,
-                 ALLEGRO_ALIGN_CENTRE, "PLAY");
-
     Play->Render();
-
+    Help->Render();
+    Quit->Render();
 }
 
 void MainMenu::Update(ALLEGRO_EVENT *event) {
     Play->Update(event);
-    if (event->type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN)
+    Help->Update(event);
+    Quit->Update(event);
+    if (Play->Active)
         Current = new Game();
+    if (Quit->Active)
+        Executing = false;
 }
