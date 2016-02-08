@@ -71,86 +71,33 @@ void Game::Update(ALLEGRO_EVENT *event) {
         if (Alphabet.at(i)->Pressed) {
             Alphabet.at(i)->Enabled = false;
             switch (i) {
-                case 0:
-                    HandleTurn('A');
-                    break;
-                case 1:
-                    HandleTurn('B');
-                    break;
-                case 2:
-                    HandleTurn('C');
-                    break;
-                case 3:
-                    HandleTurn('D');
-                    break;
-                case 4:
-                    HandleTurn('E');
-                    break;
-                case 5:
-                    HandleTurn('F');
-                    break;
-                case 6:
-                    HandleTurn('G');
-                    break;
-                case 7:
-                    HandleTurn('H');
-                    break;
-                case 8:
-                    HandleTurn('I');
-                    break;
-                case 9:
-                    HandleTurn('J');
-                    break;
-                case 10:
-                    HandleTurn('K');
-                    break;
-                case 11:
-                    HandleTurn('L');
-                    break;
-                case 12:
-                    HandleTurn('M');
-                    break;
-                case 13:
-                    HandleTurn('N');
-                    break;
-                case 14:
-                    HandleTurn('O');
-                    break;
-                case 15:
-                    HandleTurn('P');
-                    break;
-                case 16:
-                    HandleTurn('Q');
-                    break;
-                case 17:
-                    HandleTurn('R');
-                    break;
-                case 18:
-                    HandleTurn('S');
-                    break;
-                case 19:
-                    HandleTurn('T');
-                    break;
-                case 20:
-                    HandleTurn('U');
-                    break;
-                case 21:
-                    HandleTurn('V');
-                    break;
-                case 22:
-                    HandleTurn('W');
-                    break;
-                case 23:
-                    HandleTurn('X');
-                    break;
-                case 24:
-                    HandleTurn('Y');
-                    break;
-                case 25:
-                    HandleTurn('Z');
-                    break;
-                default:
-                    break;
+                case 0:  HandleTurn('A'); break;
+                case 1:  HandleTurn('B'); break;
+                case 2:  HandleTurn('C'); break;
+                case 3:  HandleTurn('D'); break;
+                case 4:  HandleTurn('E'); break;
+                case 5:  HandleTurn('F'); break;
+                case 6:  HandleTurn('G'); break;
+                case 7:  HandleTurn('H'); break;
+                case 8:  HandleTurn('I'); break;
+                case 9:  HandleTurn('J'); break;
+                case 10: HandleTurn('K'); break;
+                case 11: HandleTurn('L'); break;
+                case 12: HandleTurn('M'); break;
+                case 13: HandleTurn('N'); break;
+                case 14: HandleTurn('O'); break;
+                case 15: HandleTurn('P'); break;
+                case 16: HandleTurn('Q'); break;
+                case 17: HandleTurn('R'); break;
+                case 18: HandleTurn('S'); break;
+                case 19: HandleTurn('T'); break;
+                case 20: HandleTurn('U'); break;
+                case 21: HandleTurn('V'); break;
+                case 22: HandleTurn('W'); break;
+                case 23: HandleTurn('X'); break;
+                case 24: HandleTurn('Y'); break;
+                case 25: HandleTurn('Z'); break;
+                default: break;
             }
         }
     }
