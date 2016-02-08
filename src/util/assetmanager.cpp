@@ -98,6 +98,7 @@ void AssetManager::LoadDict(const char *file, const char *key) {
     std::string line = "";
 
     while (std::getline(dict, line)) {
+        std::transform(line.begin(), line.end(), line.begin(), ::toupper);
         x.push_back(line);
     }
 

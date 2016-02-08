@@ -38,6 +38,7 @@ Game::Game() {
     };
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
+    for (int i = 0; i < _TheWord.size(); i++) _DisplayWord += "_";
 }
 
 Game::~Game() {
@@ -50,10 +51,13 @@ void Game::Render() {
     al_draw_text(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 255, 255),
                  ASSET_MANAGER.SCREEN_W - 5, ASSET_MANAGER.SCREEN_H - 30,
                  ALLEGRO_ALIGN_RIGHT, "by Thomas Steinholz");
-
-    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
-                 ASSET_MANAGER.SCREEN_W / 2, ASSET_MANAGER.SCREEN_H / 2,
+//  -DEBUG
+    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 0, 255),
+                 100, ASSET_MANAGER.SCREEN_H / 2,
                  ALLEGRO_ALIGN_CENTER, _TheWord.c_str());
+    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
+                 ASSET_MANAGER.SCREEN_W / 2, 400,
+                 ALLEGRO_ALIGN_CENTER, _DisplayWord.c_str());
 
 
     for (auto x : Alphabet) x->Render();
@@ -62,8 +66,106 @@ void Game::Render() {
 }
 
 void Game::Update(ALLEGRO_EVENT *event) {
-    for (auto x : Alphabet) {
-        x->Update(event);
-        if (x->Pressed) x->Enabled = false;
+    for (unsigned long i = 0; i < Alphabet.size(); i++) {
+        Alphabet.at(i)->Update(event);
+        if (Alphabet.at(i)->Pressed) {
+            Alphabet.at(i)->Enabled = false;
+            switch (i) {
+                case 0:
+                    HandleTurn('A');
+                    break;
+                case 1:
+                    HandleTurn('B');
+                    break;
+                case 2:
+                    HandleTurn('C');
+                    break;
+                case 3:
+                    HandleTurn('D');
+                    break;
+                case 4:
+                    HandleTurn('E');
+                    break;
+                case 5:
+                    HandleTurn('F');
+                    break;
+                case 6:
+                    HandleTurn('G');
+                    break;
+                case 7:
+                    HandleTurn('H');
+                    break;
+                case 8:
+                    HandleTurn('I');
+                    break;
+                case 9:
+                    HandleTurn('J');
+                    break;
+                case 10:
+                    HandleTurn('K');
+                    break;
+                case 11:
+                    HandleTurn('L');
+                    break;
+                case 12:
+                    HandleTurn('M');
+                    break;
+                case 13:
+                    HandleTurn('N');
+                    break;
+                case 14:
+                    HandleTurn('O');
+                    break;
+                case 15:
+                    HandleTurn('P');
+                    break;
+                case 16:
+                    HandleTurn('Q');
+                    break;
+                case 17:
+                    HandleTurn('R');
+                    break;
+                case 18:
+                    HandleTurn('S');
+                    break;
+                case 19:
+                    HandleTurn('T');
+                    break;
+                case 20:
+                    HandleTurn('U');
+                    break;
+                case 21:
+                    HandleTurn('V');
+                    break;
+                case 22:
+                    HandleTurn('W');
+                    break;
+                case 23:
+                    HandleTurn('X');
+                    break;
+                case 24:
+                    HandleTurn('Y');
+                    break;
+                case 25:
+                    HandleTurn('Z');
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}
+
+void Game::HandleTurn(char letter) {
+    if (_TheWord.find(letter) != -1) {
+        std::string old = _DisplayWord;
+        _DisplayWord = "";
+        for (unsigned long i = 0; i < _TheWord.size(); i++) {
+            if (old.at(i) == '_' && _TheWord.at(i) == letter) _DisplayWord += letter;
+            else _DisplayWord += old.at(i);
+        }
+    } else {
+        // TODO : Add body part [track error count]
+        // TODO : Check if the player can move on [baed on error count]
     }
 }

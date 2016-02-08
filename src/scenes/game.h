@@ -43,8 +43,11 @@ public:
     virtual void Update(ALLEGRO_EVENT *event) override;
 
 protected:
+
+    void HandleTurn(char letter);
+
     std::vector<std::shared_ptr<Button>> Alphabet;
-    std::string _TheWord;
+    std::string _TheWord, _DisplayWord;
 };
 
 

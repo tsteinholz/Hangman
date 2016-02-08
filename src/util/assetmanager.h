@@ -33,6 +33,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <map>
 #include <fstream>
