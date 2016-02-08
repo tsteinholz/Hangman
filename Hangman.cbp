@@ -36,7 +36,21 @@
 			<Add library="lib\bin\allegro-5.0.10-monolith-md.dll" />
 			<Add directory="lib/bin" />
 		</Linker>
-		<Unit filename="main.cpp" />
+		<Unit filename="src/gameobjects/gameobject.h" />
+		<Unit filename="src/gameobjects/hangman/man.cpp" />
+		<Unit filename="src/gameobjects/hangman/man.h" />
+		<Unit filename="src/gameobjects/ui/button.cpp" />
+		<Unit filename="src/gameobjects/ui/button.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/scenes/game.cpp" />
+		<Unit filename="src/scenes/game.h" />
+		<Unit filename="src/scenes/help.cpp" />
+		<Unit filename="src/scenes/help.h" />
+		<Unit filename="src/scenes/mainmenu.cpp" />
+		<Unit filename="src/scenes/mainmenu.h" />
+		<Unit filename="src/scenes/scene.h" />
+		<Unit filename="src/util/assetmanager.cpp" />
+		<Unit filename="src/util/assetmanager.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

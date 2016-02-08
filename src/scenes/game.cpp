@@ -7,35 +7,11 @@ Game::Game() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
     ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
 
-    Alphabet = {
-            std::make_shared<Button>((char *) "A", ASSET_MANAGER.GetFont("league"), 125, 500), // 0
-            std::make_shared<Button>((char *) "B", ASSET_MANAGER.GetFont("league"), 175, 500), // 1
-            std::make_shared<Button>((char *) "C", ASSET_MANAGER.GetFont("league"), 225, 500), // 2
-            std::make_shared<Button>((char *) "D", ASSET_MANAGER.GetFont("league"), 275, 500), // 3
-            std::make_shared<Button>((char *) "E", ASSET_MANAGER.GetFont("league"), 325, 500), // 4
-            std::make_shared<Button>((char *) "F", ASSET_MANAGER.GetFont("league"), 375, 500), // 5
-            std::make_shared<Button>((char *) "G", ASSET_MANAGER.GetFont("league"), 425, 500), // 6
-            std::make_shared<Button>((char *) "H", ASSET_MANAGER.GetFont("league"), 475, 500), // 7
-            std::make_shared<Button>((char *) "I", ASSET_MANAGER.GetFont("league"), 525, 500), // 8
-            std::make_shared<Button>((char *) "J", ASSET_MANAGER.GetFont("league"), 575, 500), // 9
-            std::make_shared<Button>((char *) "K", ASSET_MANAGER.GetFont("league"), 625, 500), // 10
-            std::make_shared<Button>((char *) "L", ASSET_MANAGER.GetFont("league"), 675, 500), // 11
-            std::make_shared<Button>((char *) "M", ASSET_MANAGER.GetFont("league"), 725, 500), // 12
-
-            std::make_shared<Button>((char *) "N", ASSET_MANAGER.GetFont("league"), 125, 550), // 13
-            std::make_shared<Button>((char *) "O", ASSET_MANAGER.GetFont("league"), 175, 550), // 14
-            std::make_shared<Button>((char *) "P", ASSET_MANAGER.GetFont("league"), 225, 550), // 15
-            std::make_shared<Button>((char *) "Q", ASSET_MANAGER.GetFont("league"), 275, 550), // 16
-            std::make_shared<Button>((char *) "R", ASSET_MANAGER.GetFont("league"), 325, 550), // 17
-            std::make_shared<Button>((char *) "S", ASSET_MANAGER.GetFont("league"), 375, 550), // 18
-            std::make_shared<Button>((char *) "T", ASSET_MANAGER.GetFont("league"), 425, 550), // 19
-            std::make_shared<Button>((char *) "U", ASSET_MANAGER.GetFont("league"), 475, 550), // 20
-            std::make_shared<Button>((char *) "V", ASSET_MANAGER.GetFont("league"), 525, 550), // 21
-            std::make_shared<Button>((char *) "W", ASSET_MANAGER.GetFont("league"), 575, 550), // 22
-            std::make_shared<Button>((char *) "X", ASSET_MANAGER.GetFont("league"), 625, 550), // 23
-            std::make_shared<Button>((char *) "Y", ASSET_MANAGER.GetFont("league"), 675, 550), // 24
-            std::make_shared<Button>((char *) "Z", ASSET_MANAGER.GetFont("league"), 725, 550)  // 25
-    };
+    for (char c = 'A'; c <= 'Z'; ++c) {
+        std::string x = ""; x += c;
+        Alphabet.push_back(std::make_shared<Button>(x.c_str(), ASSET_MANAGER.GetFont("league"), 125, 500,
+                                     [] () -> void {  }));
+    }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (int i = 0; i < _TheWord.size(); i++) _DisplayWord += "_";
@@ -68,6 +44,7 @@ void Game::Render() {
 void Game::Update(ALLEGRO_EVENT *event) {
     for (unsigned long i = 0; i < Alphabet.size(); i++) {
         Alphabet.at(i)->Update(event);
+        /*
         if (Alphabet.at(i)->Pressed) {
             Alphabet.at(i)->Enabled = false;
             switch (i) {
@@ -100,16 +77,15 @@ void Game::Update(ALLEGRO_EVENT *event) {
                 default: break;
             }
         }
+        */
     }
 }
 
 void Game::HandleTurn(char letter) {
-    if (_TheWord.find(letter) != -1) {
-        std::string old = _DisplayWord;
-        _DisplayWord = "";
+    if (_TheWord.find(letter) != std::string::npos) {
         for (unsigned long i = 0; i < _TheWord.size(); i++) {
-            if (old.at(i) == '_' && _TheWord.at(i) == letter) _DisplayWord += letter;
-            else _DisplayWord += old.at(i);
+            if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter)
+                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
         }
     } else {
         // TODO : Add body part [track error count]

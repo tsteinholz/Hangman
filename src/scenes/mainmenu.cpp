@@ -7,9 +7,12 @@ MainMenu::MainMenu() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
 
-    btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250);
-    btn_Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300);
-    btn_Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350);
+    btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
+                          [] () -> void { SetScene(new Game()); });
+    btn_Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300,
+                          [] () -> void { SetScene(new Help()); });
+    btn_Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350,
+                          [] () -> void { SetExe(false); });
 }
 
 MainMenu::~MainMenu() {
@@ -39,8 +42,4 @@ void MainMenu::Update(ALLEGRO_EVENT *event) {
     btn_Play->Update(event);
     btn_Help->Update(event);
     btn_Quit->Update(event);
-
-    if (btn_Play->Pressed) SetScene(new Game());
-    if (btn_Help->Pressed) SetScene(new Help());
-    if (btn_Quit->Pressed) SetExe(false);
 }

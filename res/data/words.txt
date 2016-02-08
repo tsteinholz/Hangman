@@ -53,7 +53,7 @@ Circus
 Clock
 Clown
 Coffee
-Coffee-shop
+Coffeeshop
 Comet
 Compact Disc
 Compass
@@ -109,7 +109,7 @@ Horoscope
 Horse
 Hose
 Ice
-Ice-cream
+Icecream
 Insect
 Jet fighter
 Junk
@@ -151,7 +151,7 @@ Pillow
 Plane
 Planet
 Pocket
-Post-office
+Post office
 Potato
 Printer
 Prison

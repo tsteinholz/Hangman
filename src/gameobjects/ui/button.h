@@ -34,7 +34,7 @@ class Button : public GameObject {
 
 public:
 
-    Button(char *text, ALLEGRO_FONT *font, float x, float y);
+    Button(char *text, ALLEGRO_FONT *font, float x, float y, const std::function <void()> f);
 
     virtual ~Button();
 
@@ -58,6 +58,7 @@ protected:
     ALLEGRO_FONT *_Font;
     char *_Text;
     float _X, _Y;
+    std::function <void()>_HandleFunction;
 };
 
 #endif //HANGMAN_BUTTON_H
