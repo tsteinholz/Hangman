@@ -9,8 +9,8 @@ Game::Game() {
 
     for (char c = 'A'; c <= 'Z'; ++c) {
         std::string x = ""; x += c;
-        Alphabet.push_back(std::make_shared<Button>(x.c_str(), ASSET_MANAGER.GetFont("league"), 125, 500,
-                                     [] () -> void {  }));
+        //Alphabet.push_back(std::make_shared<Button>(x.c_str(), ASSET_MANAGER.GetFont("league"), 125, 500,
+        //                             [] () -> void {  }));
     }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
