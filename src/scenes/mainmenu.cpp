@@ -13,7 +13,8 @@ MainMenu::MainMenu() {
 }
 
 MainMenu::~MainMenu() {
-    ASSET_MANAGER.DiscardFont("cubic");
+    ASSET_MANAGER.DiscardFont("cubic-header");
+    ASSET_MANAGER.DiscardFont("cubic-credits");
     ASSET_MANAGER.DiscardFont("league");
 
     delete btn_Play;
@@ -38,10 +39,8 @@ void MainMenu::Update(ALLEGRO_EVENT *event) {
     btn_Play->Update(event);
     btn_Help->Update(event);
     btn_Quit->Update(event);
-    if (btn_Play->Active)
-        SetScene(new Game());
-    if (btn_Help->Active)
-        SetScene(new Help());
-    if (btn_Quit->Active)
-        Executing = false;
+
+    if (btn_Play->Pressed) SetScene(new Game());
+    if (btn_Help->Pressed) SetScene(new Help());
+    if (btn_Quit->Pressed) SetExe(false);
 }

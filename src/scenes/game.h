@@ -44,6 +44,7 @@ public:
 
 protected:
     std::vector<std::shared_ptr<Button>> Alphabet;
+    std::string _TheWord;
 };
 
 

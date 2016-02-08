@@ -12,8 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/scenes/scene.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/scenes/mainmenu.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/man.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/hangman/man.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/hangman/man.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/letter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/letter.h" isTestSource="false" />

@@ -35,7 +35,9 @@
 
 #include <cstdio>
 #include <map>
+#include <fstream>
 #include <memory>
+#include <vector>
 
 #define ASSET_MANAGER AssetManager::GetAssetManager()
 
@@ -93,6 +95,16 @@ public:
     static bool LoadText(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
+    // Purpose: Load some dict for the game to use. This function will store an
+    //          instance of the asset in memory (in a hash map corresponding with
+    //          the data type provided.
+    //
+    // param file: The location on disk of the asset
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void LoadDict(const char *file, const char *key = "");
+
+    //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
     //          This function is good for performance so that you don't use more
     //          RAM than you need to.
@@ -129,6 +141,15 @@ public:
     static void DiscardText(const char *key);
 
     //-----------------------------------------------------------------------------
+    // Purpose: Destroys an asset that is presumably no longer needed by the game.
+    //          This function is good for performance so that you don't use more
+    //          RAM than you need to.
+    //
+    // param key: The string you use to receive this asset (defaults to the path str)
+    //-----------------------------------------------------------------------------
+    static void DiscardDict(const char *key);
+
+    //-----------------------------------------------------------------------------
     // Purpose: Returns the image
     //
     // param key: The string used to store the asset in memory
@@ -156,6 +177,13 @@ public:
     //-----------------------------------------------------------------------------
     static const char *GetText(const char *key);
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Returns the dict
+    //
+    // param key: The string used to store the asset in memory
+    //-----------------------------------------------------------------------------
+    static std::vector<std::string> GetDict(const char *key);
+
     const unsigned int SCREEN_W = 850, SCREEN_H = 650;
 
 private:
@@ -168,6 +196,8 @@ private:
     static std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> _SoundMap;
     static std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> _FontMap;
     static std::map<const char *, const char *> _TextMap;
+    static std::map<const char *, std::vector<std::string>> _DictMap;
+
 };
 
 

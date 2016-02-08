@@ -27,6 +27,9 @@
 
 #include "../gameobject.h"
 
+//-----------------------------------------------------------------------------
+// Purpose: Represents a button for the user interface
+//-----------------------------------------------------------------------------
 class Button : public GameObject {
 
 public:
@@ -35,20 +38,20 @@ public:
 
     virtual ~Button();
 
-    bool Active, Hover;
+    bool Pressed, Hover, Enabled;
 
     virtual void Render();
 
     virtual void Update(ALLEGRO_EVENT *event);
 
-    const ALLEGRO_COLOR ENABLED_COLOR = al_map_rgb(255, 255, 255);
-    const ALLEGRO_COLOR DIABLED_COLOR = al_map_rgb(0, 255, 255);
-    const ALLEGRO_COLOR HOVER_COLOR = al_map_rgb(0, 255, 255);
-    const ALLEGRO_COLOR CLICKED_COLOR = al_map_rgb(0, 0, 255);
-    const ALLEGRO_COLOR DEBUG_COLOR = al_map_rgb(255, 0, 255);
-
-    // TODO : Add ability to disable the button
-    // TODO : Add the ability to cross out a button with a cubic red X
+    //-----------------------------------------------------------------------------
+    // Purpose: Default Color Theme for Buttons
+    //-----------------------------------------------------------------------------
+    ALLEGRO_COLOR ENABLED_COLOR = al_map_rgb(255, 255, 255);
+    ALLEGRO_COLOR DISABLED_COLOR = al_map_rgb(100, 100, 100);
+    ALLEGRO_COLOR HOVER_COLOR = al_map_rgb(119, 144, 232);
+    ALLEGRO_COLOR CLICKED_COLOR = al_map_rgb(0, 0, 255); // TODO
+    ALLEGRO_COLOR DEBUG_COLOR = al_map_rgb(255, 0, 255);
 
 protected:
 

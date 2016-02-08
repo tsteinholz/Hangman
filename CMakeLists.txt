@@ -7,8 +7,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 set(SOURCE_FILES
         src/main.cpp
         src/scenes/scene.h
-        src/gameobjects/man.cpp
-        src/gameobjects/man.h
+        src/gameobjects/hangman/man.cpp
+        src/gameobjects/hangman/man.h
         src/scenes/mainmenu.cpp
         src/scenes/mainmenu.h
         src/util/assetmanager.cpp

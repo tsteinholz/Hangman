@@ -4,6 +4,7 @@ std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> AssetManager::_ImageMap 
 std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> AssetManager::_SoundMap = {};
 std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> AssetManager::_FontMap = {};
 std::map<const char *, const char *> AssetManager::_TextMap = {};
+std::map<const char *, std::vector<std::string>> AssetManager::_DictMap = {};
 
 AssetManager::AssetManager() {
     if (!al_init()) {
@@ -90,6 +91,20 @@ bool AssetManager::LoadText(const char *file, const char *key) {
     return false;
 }
 
+void AssetManager::LoadDict(const char *file, const char *key) {
+    key = !key ? file : key;
+    std::vector<std::string> x;
+    std::ifstream dict(file);
+    std::string line = "";
+
+    while (std::getline(dict, line)) {
+        x.push_back(line);
+    }
+
+    printf("DEBUG: Loaded %s\n", key); //debug
+    _DictMap.insert(std::pair<const char *, std::vector<std::string>>(key, x));
+}
+
 ALLEGRO_BITMAP *AssetManager::GetImage(const char *key) {
     return _ImageMap.at(key).get();
 }
@@ -104,6 +119,10 @@ ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
 
 const char *AssetManager::GetText(const char *key) {
     return _TextMap.at(key);
+}
+
+std::vector<std::string> AssetManager::GetDict(const char *key) {
+    return _DictMap.at(key);
 }
 
 void AssetManager::DiscardImage(const char *key) {
@@ -123,5 +142,10 @@ void AssetManager::DiscardFont(const char *key) {
 
 void AssetManager::DiscardText(const char *key) {
     _TextMap.erase(key);
+    printf("DEBUG: Discarded %s\n", key); //debug
+}
+
+void AssetManager::DiscardDict(const char *key) {
+    _DictMap.erase(key);
     printf("DEBUG: Discarded %s\n", key); //debug
 }
