@@ -11,10 +11,11 @@ void Button::Render() {
     al_draw_text(_Font, Hover ? HOVER_COLOR : Pressed ? CLICKED_COLOR : Enabled ? ENABLED_COLOR : DISABLED_COLOR, _X,
                  _Y,
                  ALLEGRO_ALIGN_CENTER, _Text.c_str());
-//    -DEBUG [uncomment the line below]
-//    al_draw_rectangle(_X + (al_get_text_width(_Font, _Text.c_str()) / 2) + 2.5f, _Y + 7,
-//                      _X - (al_get_text_width(_Font, _Text.c_str()) / 2), _Y + (al_get_font_line_height(_Font) - 9),
-//                      DEBUG_COLOR, 2);
+#ifdef DEBUG
+        al_draw_rectangle(_X + (al_get_text_width(_Font, _Text.c_str()) / 2) + 2.5f, _Y + 7,
+                      _X - (al_get_text_width(_Font, _Text.c_str()) / 2), _Y + (al_get_font_line_height(_Font) - 9),
+                      DEBUG_COLOR, 2);
+#endif
 }
 
 void Button::Update(ALLEGRO_EVENT *event) {

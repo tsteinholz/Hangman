@@ -41,6 +41,7 @@
 #include <vector>
 
 #define ASSET_MANAGER AssetManager::GetAssetManager()
+//#define DEBUG
 
 //-----------------------------------------------------------------------------
 // Purpose: A singleton class that manages all the assets in the game

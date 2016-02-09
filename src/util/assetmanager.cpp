@@ -54,7 +54,9 @@ bool AssetManager::LoadImage(const char *file, const char *key) {
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+#ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
+#endif
     _ImageMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
     return true;
 }
@@ -66,7 +68,9 @@ bool AssetManager::LoadSound(const char *file, const char *key) {
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+#ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
+#endif
     _SoundMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
     return true;
 }
@@ -78,7 +82,9 @@ bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key
         fprintf(stderr, "Failed to load %s\n", file);
         return false;
     }
+#ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
+#endif
     _FontMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_FONT>>(key, x));
     return true;
 }
@@ -87,7 +93,9 @@ bool AssetManager::LoadText(const char *file, const char *key) {
     key = !key ? file : key;
     // TODO
     //if (!x) { printf("Failed to load %s", file); return false;}
+#ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
+#endif
     return false;
 }
 
@@ -101,8 +109,9 @@ void AssetManager::LoadDict(const char *file, const char *key) {
         std::transform(line.begin(), line.end(), line.begin(), ::toupper);
         x.push_back(line);
     }
-
+#ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
+#endif
     _DictMap.insert(std::pair<const char *, std::vector<std::string>>(key, x));
 }
 
@@ -128,25 +137,35 @@ std::vector<std::string> AssetManager::GetDict(const char *key) {
 
 void AssetManager::DiscardImage(const char *key) {
     _ImageMap.erase(key);
+#ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
+#endif
 }
 
 void AssetManager::DiscardSound(const char *key) {
     _SoundMap.erase(key);
+#ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
+#endif
 }
 
 void AssetManager::DiscardFont(const char *key) {
     _FontMap.erase(key);
+#ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
+#endif
 }
 
 void AssetManager::DiscardText(const char *key) {
     _TextMap.erase(key);
+#ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
+#endif
 }
 
 void AssetManager::DiscardDict(const char *key) {
     _DictMap.erase(key);
+#ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
+#endif
 }

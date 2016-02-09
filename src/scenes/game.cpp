@@ -8,7 +8,7 @@ Game::Game() {
     ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
 
     float x = 125;
-    for (char c = 'A'; c <= 'Z'; ++c) {
+    for (unsigned char c = 'A'; c <= 'Z'; ++c) {
         Alphabet.push_back(std::make_shared<Button>(
                 std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, []() -> void {}));
         x = x < 725 ? x + 50 : 125;
@@ -22,7 +22,7 @@ Game::Game() {
     }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
-    for (int i = 0; i < _TheWord.size(); i++) _DisplayWord += "_";
+    for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 }
 
 Game::~Game() {
@@ -35,18 +35,24 @@ void Game::Render() {
     al_draw_text(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 255, 255),
                  ASSET_MANAGER.SCREEN_W - 5, ASSET_MANAGER.SCREEN_H - 30,
                  ALLEGRO_ALIGN_RIGHT, "by Thomas Steinholz");
-//  -DEBUG
-    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 0, 255),
-                 100, ASSET_MANAGER.SCREEN_H / 2,
-                 ALLEGRO_ALIGN_CENTER, _TheWord.c_str());
+
     al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
                  ASSET_MANAGER.SCREEN_W / 2, 400,
                  ALLEGRO_ALIGN_CENTER, _DisplayWord.c_str());
 
-
     for (auto x : Alphabet) x->Render();
     al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 075, 470, ALLEGRO_ALIGN_CENTER, "{");
     al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 775, 470, ALLEGRO_ALIGN_CENTER, "}");
+
+#ifdef DEBUG //==DEBUG================================================================================================//
+
+    al_draw_text(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 0, 255), 25, 15,
+                 ALLEGRO_ALIGN_LEFT, "Debug Mode");
+
+    al_draw_textf(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 0, 255), 25, 50,
+                 ALLEGRO_ALIGN_LEFT, "WORD : %s", _TheWord.c_str());
+
+#endif //=============================================================================================================//
 }
 
 void Game::Update(ALLEGRO_EVENT *event) {
@@ -63,6 +69,6 @@ void Game::HandleTurn(char letter) {
         }
     } else {
         // TODO : Add body part [track error count]
-        // TODO : Check if the player can move on [baed on error count]
+        // TODO : Check if the player can move on [based on error count]
     }
 }

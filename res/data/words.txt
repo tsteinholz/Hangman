@@ -35,7 +35,7 @@ Butterfly
 Button
 Cappuccino
 Car
-Car-race
+Car race
 Carpet
 Carrot
 Cave
@@ -53,7 +53,7 @@ Circus
 Clock
 Clown
 Coffee
-Coffeeshop
+Coffee Shop
 Comet
 Compact Disc
 Compass
@@ -191,7 +191,7 @@ Sphere
 Spice
 Spiral
 Spoon
-Sports-car
+Sports car
 Spot Light
 Square
 Staircase
@@ -231,4 +231,4 @@ Wheelchair
 Window
 Woman
 Worm
-X-ray
+X ray
