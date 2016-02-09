@@ -7,10 +7,18 @@ Game::Game() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
     ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
 
+    float x = 125;
     for (char c = 'A'; c <= 'Z'; ++c) {
-        std::string x = ""; x += c;
-        //Alphabet.push_back(std::make_shared<Button>(x.c_str(), ASSET_MANAGER.GetFont("league"), 125, 500,
-        //                             [] () -> void {  }));
+        Alphabet.push_back(std::make_shared<Button>(
+                std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, []() -> void {}));
+        x = x < 725 ? x + 50 : 125;
+    }
+
+    for (unsigned long i = 0; i < Alphabet.size(); i++) {
+        Alphabet.at(i)->SetHandler([this, i]() -> void {
+            Alphabet.at(i)->Enabled = false;
+            HandleTurn((Alphabet.at(i)->GetText().c_str())[0]);
+        });
     }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
@@ -37,47 +45,13 @@ void Game::Render() {
 
 
     for (auto x : Alphabet) x->Render();
-    al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 75, 470, ALLEGRO_ALIGN_CENTER, "{");
+    al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 075, 470, ALLEGRO_ALIGN_CENTER, "{");
     al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 775, 470, ALLEGRO_ALIGN_CENTER, "}");
 }
 
 void Game::Update(ALLEGRO_EVENT *event) {
     for (unsigned long i = 0; i < Alphabet.size(); i++) {
         Alphabet.at(i)->Update(event);
-        /*
-        if (Alphabet.at(i)->Pressed) {
-            Alphabet.at(i)->Enabled = false;
-            switch (i) {
-                case 0:  HandleTurn('A'); break;
-                case 1:  HandleTurn('B'); break;
-                case 2:  HandleTurn('C'); break;
-                case 3:  HandleTurn('D'); break;
-                case 4:  HandleTurn('E'); break;
-                case 5:  HandleTurn('F'); break;
-                case 6:  HandleTurn('G'); break;
-                case 7:  HandleTurn('H'); break;
-                case 8:  HandleTurn('I'); break;
-                case 9:  HandleTurn('J'); break;
-                case 10: HandleTurn('K'); break;
-                case 11: HandleTurn('L'); break;
-                case 12: HandleTurn('M'); break;
-                case 13: HandleTurn('N'); break;
-                case 14: HandleTurn('O'); break;
-                case 15: HandleTurn('P'); break;
-                case 16: HandleTurn('Q'); break;
-                case 17: HandleTurn('R'); break;
-                case 18: HandleTurn('S'); break;
-                case 19: HandleTurn('T'); break;
-                case 20: HandleTurn('U'); break;
-                case 21: HandleTurn('V'); break;
-                case 22: HandleTurn('W'); break;
-                case 23: HandleTurn('X'); break;
-                case 24: HandleTurn('Y'); break;
-                case 25: HandleTurn('Z'); break;
-                default: break;
-            }
-        }
-        */
     }
 }
 
@@ -85,7 +59,7 @@ void Game::HandleTurn(char letter) {
     if (_TheWord.find(letter) != std::string::npos) {
         for (unsigned long i = 0; i < _TheWord.size(); i++) {
             if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter)
-                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
+                std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
         }
     } else {
         // TODO : Add body part [track error count]

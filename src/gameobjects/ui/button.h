@@ -34,7 +34,7 @@ class Button : public GameObject {
 
 public:
 
-    Button(char *text, ALLEGRO_FONT *font, float x, float y, const std::function <void()> f);
+    Button(std::string text, ALLEGRO_FONT *font, float x, float y, const std::function <void()> f);
 
     virtual ~Button();
 
@@ -43,6 +43,10 @@ public:
     virtual void Render();
 
     virtual void Update(ALLEGRO_EVENT *event);
+
+    void SetHandler(const std::function <void()> f);
+
+    std::string GetText();
 
     //-----------------------------------------------------------------------------
     // Purpose: Default Color Theme for Buttons
@@ -56,7 +60,7 @@ public:
 protected:
 
     ALLEGRO_FONT *_Font;
-    char *_Text;
+    std::string _Text;
     float _X, _Y;
     std::function <void()>_HandleFunction;
 };
