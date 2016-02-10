@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/gameobjects/graphics" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/gameobjects/graphics" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -37,8 +39,8 @@
 			<Add directory="lib/bin" />
 		</Linker>
 		<Unit filename="src/gameobjects/gameobject.h" />
-		<Unit filename="src/gameobjects/hangman/man.cpp" />
-		<Unit filename="src/gameobjects/hangman/man.h" />
+		<Unit filename="src/gameobjects/graphics/sprite.cpp" />
+		<Unit filename="src/gameobjects/graphics/sprite.h" />
 		<Unit filename="src/gameobjects/ui/button.cpp" />
 		<Unit filename="src/gameobjects/ui/button.h" />
 		<Unit filename="src/main.cpp" />

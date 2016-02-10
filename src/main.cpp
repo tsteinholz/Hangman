@@ -110,6 +110,6 @@ int main() {
         render = false;
     }
     al_destroy_display(display);
-    ASSET_MANAGER.DiscardImage("background");
+    ASSET_MANAGER.DiscardAll();
     return 0;
 }

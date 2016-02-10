@@ -169,3 +169,14 @@ void AssetManager::DiscardDict(const char *key) {
     printf("DEBUG: Discarded %s\n", key); //debug
 #endif
 }
+
+void AssetManager::DiscardAll() {
+    _ImageMap.clear();
+    _SoundMap.clear();
+    _FontMap.clear();
+    _TextMap.clear();
+    _DictMap.clear();
+#ifdef DEBUG
+        printf("DEBUG: Discarded All Assets");
+#endif // DEBUG
+}

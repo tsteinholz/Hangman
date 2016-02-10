@@ -16,9 +16,8 @@ MainMenu::MainMenu() {
 }
 
 MainMenu::~MainMenu() {
-    ASSET_MANAGER.DiscardFont("cubic-header");
-    ASSET_MANAGER.DiscardFont("cubic-credits");
-    ASSET_MANAGER.DiscardFont("league");
+    // TODO - never called
+    ASSET_MANAGER.DiscardAll();
 
     delete btn_Play;
     delete btn_Help;

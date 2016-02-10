@@ -36,6 +36,7 @@
 class Scene {
 
 public:
+
     //-----------------------------------------------------------------------------
     // Purpose: What-ever scene is in this variable will get handled
     //-----------------------------------------------------------------------------
@@ -46,7 +47,7 @@ public:
     //          over-watch
     //-----------------------------------------------------------------------------
     static inline void SetScene(Scene *scene) {
-        delete Current;
+        if (Current) delete Current;
         Current = scene;
     }
 
@@ -77,6 +78,9 @@ public:
     virtual void Update(ALLEGRO_EVENT *event) = 0;
 
 protected:
+
+    // TODO: Fix
+    //virtual ~Scene() { printf("Destroyed Scene"); }
 
     //-----------------------------------------------------------------------------
     // Purpose: If the game is executing or not

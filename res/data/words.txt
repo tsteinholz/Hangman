@@ -1,5 +1,5 @@
 Adult
-Aeroplane
+Airplane
 Air
 Aircraft Carrier
 Airport
@@ -35,7 +35,7 @@ Butterfly
 Button
 Cappuccino
 Car
-Car race
+Car Race
 Carpet
 Carrot
 Cave
@@ -45,10 +45,7 @@ Chief
 Child
 Chisel
 Chocolates
-Church
-Church
 Circle
-Circus
 Circus
 Clock
 Clown
@@ -69,6 +66,7 @@ Drill
 Drink
 Drum
 Dung
+Dust
 Ears
 Earth
 Egg
@@ -155,7 +153,9 @@ Post office
 Potato
 Printer
 Prison
+Pseudopseudohypoparathyroidism
 Pyramid
+Racecar
 Radar
 Rainbow
 Record
@@ -232,3 +232,12 @@ Window
 Woman
 Worm
 X ray
+spectrophotofluorometrically
+hepaticocholangiogastrostomy
+psychoneuroendocrinological
+radioimmunoelectrophoresis
+pneumoencephalographically
+immunoelectrophoretically
+otorhinolaryngological
+antidisestablishmentarianism
+floccinaucinihilipilification
