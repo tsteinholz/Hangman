@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "scene.h"
+#include "../gameobjects/graphics/sprite.h"
 
 class Game : public Scene {
 
@@ -48,6 +49,8 @@ protected:
 
     std::vector<std::shared_ptr<Button>> Alphabet;
     std::string _TheWord, _DisplayWord;
+    Sprite* _Hangman;
+
 };
 
 

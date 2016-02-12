@@ -6,6 +6,14 @@ Game::Game() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
     ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
+    ASSET_MANAGER.LoadImage("res/animations/AddHead.png", "head");
+    ASSET_MANAGER.LoadImage("res/animations/AddRArm.png", "right-arm");
+    ASSET_MANAGER.LoadImage("res/animations/AddLArm.png", "left-arm");
+    ASSET_MANAGER.LoadImage("res/animations/AddRLeg.png", "right-leg");
+    ASSET_MANAGER.LoadImage("res/animations/AddLLeg.png", "left-leg");
+    ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
+
+    _Hangman = new Sprite(ASSET_MANAGER.GetImage("left-arm"), 8, 8);
 
     float x = 125;
     for (unsigned char c = 'A'; c <= 'Z'; ++c) {
@@ -23,6 +31,8 @@ Game::Game() {
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
+
+    _Hangman->Play(200,200, true);
 }
 
 Game::~Game() {
@@ -52,6 +62,8 @@ void Game::Render() {
     al_draw_textf(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 0, 255), 25, 50,
                  ALLEGRO_ALIGN_LEFT, "WORD : %s", _TheWord.c_str());
 
+    _Hangman->Render();
+
 #endif //=============================================================================================================//
 }
 
@@ -59,6 +71,7 @@ void Game::Update(ALLEGRO_EVENT *event) {
     for (unsigned long i = 0; i < Alphabet.size(); i++) {
         Alphabet.at(i)->Update(event);
     }
+    _Hangman->Update(event);
 }
 
 void Game::HandleTurn(char letter) {

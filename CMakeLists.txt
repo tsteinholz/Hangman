@@ -16,6 +16,8 @@ set(SOURCE_FILES
         src/gameobjects/ui/button.cpp
         src/gameobjects/ui/button.h
         src/gameobjects/gameobject.h
+        src/gameobjects/graphics/sprite.cpp
+        src/gameobjects/graphics/sprite.h
         src/scenes/help.cpp
         src/scenes/help.h
         )

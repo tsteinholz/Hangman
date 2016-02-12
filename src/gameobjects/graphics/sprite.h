@@ -25,14 +25,36 @@
 #ifndef HANGMAN_SPRITE_H
 #define HANGMAN_SPRITE_H
 
+#include "../gameobject.h"
 
-class Sprite
-{
-    public:
-        Sprite();
-        virtual ~Sprite();
-    protected:
-    private:
+//-----------------------------------------------------------------------------
+// Purpose: Displays a sprite animation
+//-----------------------------------------------------------------------------
+class Sprite : public GameObject {
+public:
+    Sprite(ALLEGRO_BITMAP* image, unsigned int columns, unsigned int rows);
+
+    virtual ~Sprite();
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Play the animation
+    //
+    // param x: The horizontal coordinate to render the animation
+    // param y: The vertical coordinate to render the animation
+    // param loop: if the animation will loop or not
+    //-----------------------------------------------------------------------------
+    void Play(float x, float y, bool loop);
+
+    virtual void Render();
+
+    virtual void Update(ALLEGRO_EVENT *event);
+
+protected:
+    ALLEGRO_BITMAP* _Image;
+    int _SpriteX, _SpriteY, _Columns, _Rows;
+    float _X, _Y;
+    bool _Loop;
+private:
 };
 
 #endif // HANGMAN_SPRITE_H

@@ -5,6 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/util/assetmanager.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/util/assetmanager.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/graphics/sprite.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/graphics/sprite.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/gameobject.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/gameobjects/ui/button.cpp" isTestSource="false" />
