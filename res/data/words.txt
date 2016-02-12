@@ -57,7 +57,7 @@ Computer
 Crystal
 Cup
 Cycle
-Cylindricity
+Cylindrically
 Data Base
 Desk
 Diamond
@@ -108,7 +108,7 @@ Horoscope
 Horse
 Hose
 Ice
-Icecream
+Iceberg
 Insect
 Jet fighter
 Junk
@@ -156,7 +156,7 @@ Printer
 Prison
 Pseudopseudohypoparathyroidism
 Pyramid
-Racecar
+Race Car
 Radar
 Rainbow
 Record
@@ -208,7 +208,7 @@ Tapestry
 Teeth
 Telescope
 Television
-Tennis racquet
+Tennis Racket
 Thermometer
 Tiger
 Toilet

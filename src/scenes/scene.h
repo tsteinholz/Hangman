@@ -47,7 +47,8 @@ public:
     //          over-watch
     //-----------------------------------------------------------------------------
     static inline void SetScene(Scene *scene) {
-        if (Current) delete Current;
+//        ASSET_MANAGER.DiscardAll(); // TODO : Fix asset manager
+        delete Current;
         Current = scene;
     }
 

@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game() : _ErrorCount(0) {
+Game::Game() : _ErrorCount(0), _State(Playing) {
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");
@@ -15,20 +15,24 @@ Game::Game() : _ErrorCount(0) {
     ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
 
     _Hangman = new Sprite(ASSET_MANAGER.GetImage("head"), 8, 8);
+    btn_Continue = new Button("Continue", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W-300, 525, [this]() -> void {
+        SetScene(new MainMenu());
+    });
+    btn_Quit = new Button("Quit", ASSET_MANAGER.GetFont("league"), 300, 525, [this]() -> void {
+        SetExe(false);
+    });
 
-    float x = 125;
+    float x = 125, i = 0;
     for (unsigned char c = 'A'; c <= 'Z'; ++c) {
         Alphabet.push_back(std::make_shared<Button>(
-                std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, []() -> void { }));
+                std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, [this, i, c]() -> void {
+            Alphabet.at((unsigned long) i)->Enabled = false;
+            HandleTurn(c);
+        }));
         x = x < 725 ? x + 50 : 125;
+        i++;
     }
 
-    for (unsigned long i = 0; i < Alphabet.size(); i++) {
-        Alphabet.at(i)->SetHandler([this, i]() -> void {
-            Alphabet.at(i)->Enabled = false;
-            HandleTurn((Alphabet.at(i)->GetText().c_str())[0]);
-        });
-    }
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 }
@@ -44,17 +48,31 @@ void Game::Render() {
                  ASSET_MANAGER.SCREEN_W - 5, ASSET_MANAGER.SCREEN_H - 30,
                  ALLEGRO_ALIGN_RIGHT, "by Thomas Steinholz");
 
-    al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
-                 ASSET_MANAGER.SCREEN_W / 2, 400,
-                 ALLEGRO_ALIGN_CENTER, _DisplayWord.c_str());
-
-    for (auto x : Alphabet) x->Render();
     al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 075, 470, ALLEGRO_ALIGN_CENTER, "{");
     al_draw_text(ASSET_MANAGER.GetFont("league-fancy"), al_map_rgb(255, 255, 255), 775, 470, ALLEGRO_ALIGN_CENTER, "}");
 
+    switch (_State) {
+        case Playing:
+            al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
+                         ASSET_MANAGER.SCREEN_W / 2, 400,
+                         ALLEGRO_ALIGN_CENTER, _DisplayWord.c_str());
+
+            for (auto x : Alphabet) x->Render();
+            break;
+        case Conclusion:
+            al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
+                         ASSET_MANAGER.SCREEN_W / 2, 400,
+                         ALLEGRO_ALIGN_CENTER, _TheWord.c_str());
+
+            btn_Continue->Render();
+            btn_Quit->Render();
+            break;
+    }
+
     _Hangman->Render();
 
-#ifdef DEBUG //==DEBUG================================================================================================//
+
+#ifdef DEBUG //==DEBUG===============================================================================================//
 
     al_draw_text(ASSET_MANAGER.GetFont("league-credits"), al_map_rgb(255, 0, 255), 25, 15,
                  ALLEGRO_ALIGN_LEFT, "Debug Mode");
@@ -69,7 +87,7 @@ void Game::Render() {
                       ASSET_MANAGER.SCREEN_W / 2, ASSET_MANAGER.SCREEN_H / 2, al_map_rgb(255, 0, 255), 3);
 
 
-#endif //=============================================================================================================//
+#endif //============================================================================================================//
 }
 
 void Game::Update(ALLEGRO_EVENT *event) {
@@ -77,6 +95,10 @@ void Game::Update(ALLEGRO_EVENT *event) {
         Alphabet.at(i)->Update(event);
     }
     _Hangman->Update(event);
+    if (_State == Conclusion) {
+        btn_Continue->Update(event);
+        btn_Quit->Update(event);
+    }
 }
 
 void Game::HandleTurn(char letter) {
@@ -85,11 +107,11 @@ void Game::HandleTurn(char letter) {
             if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter)
                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
         }
+        if (_TheWord.compare(_DisplayWord) == 0) _State = Conclusion;
     } else {
         _ErrorCount++;
 
         switch (_ErrorCount) {
-            case 1: break;
             case 2: _Hangman->SetImage(ASSET_MANAGER.GetImage("torso"), 8, 8); break;
             case 3: _Hangman->SetImage(ASSET_MANAGER.GetImage("right-arm"), 8, 8); break;
             case 4: _Hangman->SetImage(ASSET_MANAGER.GetImage("left-arm"), 8, 8); break;
@@ -99,11 +121,10 @@ void Game::HandleTurn(char letter) {
             default: break;
         }
 
+        // TODO : Fix animation sizes
         if (_ErrorCount <= 3) _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 40, 132, false);
         else _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 64, 132, false);
 
-        if (_ErrorCount == 7) {
-            Scene::SetScene(new MainMenu());
-        }
+        if (_ErrorCount == 7) _State = Conclusion;
     }
 }

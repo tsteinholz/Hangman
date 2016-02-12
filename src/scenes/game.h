@@ -44,6 +44,11 @@ public:
 
     virtual void Update(ALLEGRO_EVENT *event) override;
 
+    typedef enum {
+        Playing,
+        Conclusion
+    } State;
+
 protected:
 
     void HandleTurn(char letter);
@@ -53,6 +58,9 @@ protected:
     Sprite* _Hangman;
 
     unsigned int _ErrorCount;
+
+    Button *btn_Continue, *btn_Quit;
+    State _State;
 };
 
 
