@@ -7,6 +7,7 @@ Game::Game() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
     ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
     ASSET_MANAGER.LoadImage("res/animations/AddHead.png", "head");
+    ASSET_MANAGER.LoadImage("res/animations/AddTorso.png", "torso");
     ASSET_MANAGER.LoadImage("res/animations/AddRArm.png", "right-arm");
     ASSET_MANAGER.LoadImage("res/animations/AddLArm.png", "left-arm");
     ASSET_MANAGER.LoadImage("res/animations/AddRLeg.png", "right-leg");
@@ -32,7 +33,7 @@ Game::Game() {
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 
-    _Hangman->Play(200,200, true);
+    _Hangman->Play(200,200, false);
 }
 
 Game::~Game() {
