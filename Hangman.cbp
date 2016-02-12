@@ -23,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 					<Add directory="src/gameobjects/graphics" />
 				</Compiler>
 				<Linker>
@@ -31,7 +32,9 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-D__NO_INLINE__" />
 			<Add directory="lib/include" />
 		</Compiler>
 		<Linker>

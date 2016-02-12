@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "scene.h"
+#include "mainmenu.h"
 #include "../gameobjects/graphics/sprite.h"
 
 class Game : public Scene {

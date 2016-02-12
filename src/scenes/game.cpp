@@ -29,7 +29,6 @@ Game::Game() : _ErrorCount(0) {
             HandleTurn((Alphabet.at(i)->GetText().c_str())[0]);
         });
     }
-
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 }
@@ -87,8 +86,6 @@ void Game::HandleTurn(char letter) {
                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
         }
     } else {
-        // TODO : Add body part [track error count]
-        // TODO : Check if the player can move on [based on error count]
         _ErrorCount++;
 
         switch (_ErrorCount) {
@@ -104,5 +101,9 @@ void Game::HandleTurn(char letter) {
 
         if (_ErrorCount <= 3) _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 40, 132, false);
         else _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 64, 132, false);
+
+        if (_ErrorCount == 7) {
+            Scene::SetScene(new MainMenu());
+        }
     }
 }
