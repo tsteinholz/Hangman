@@ -1,6 +1,6 @@
 #include "sprite.h"
 
-Sprite::Sprite(ALLEGRO_BITMAP* image, unsigned int columns, unsigned int rows)
+Sprite::Sprite(ALLEGRO_BITMAP *image, unsigned int columns, unsigned int rows)
         : _Image(image), _Columns(columns), _Rows(rows), _Playing(false) { }
 
 Sprite::~Sprite() { }
@@ -23,6 +23,12 @@ void Sprite::Render() {
                               al_get_bitmap_height(_Image) / _Columns,
                               _X, _Y, 0
         );
+#ifdef DEBUG
+        al_draw_rectangle(_X, _Y,
+                          _X + al_get_bitmap_width(_Image) / _Rows,
+                          _Y + al_get_bitmap_height(_Image) / _Columns,
+                          al_map_rgb(255, 0, 255), 3);
+#endif
     }
 }
 
