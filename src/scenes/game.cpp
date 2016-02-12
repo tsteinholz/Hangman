@@ -14,7 +14,7 @@ Game::Game() {
     ASSET_MANAGER.LoadImage("res/animations/AddLLeg.png", "left-leg");
     ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
 
-    _Hangman = new Sprite(ASSET_MANAGER.GetImage("left-arm"), 8, 8);
+    _Hangman = new Sprite(ASSET_MANAGER.GetImage("torso"), 8, 8);
 
     float x = 125;
     for (unsigned char c = 'A'; c <= 'Z'; ++c) {
@@ -33,7 +33,7 @@ Game::Game() {
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
     for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 
-    _Hangman->Play(200,200, false);
+    _Hangman->Play(200,20, false);
 }
 
 Game::~Game() {
