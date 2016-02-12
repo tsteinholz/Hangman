@@ -11,10 +11,27 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49b96f88-1b74-404a-a73d-4e48e875e0c9" name="Default" comment="fixed animations">
+    <list default="true" id="49b96f88-1b74-404a-a73d-4e48e875e0c9" name="Default" comment="updated animation code">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddHead.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddLArm.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddLLeg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddRArm.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddRLeg.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xAddTorso.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/animations/4xDeath.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddHead.png" afterPath="$PROJECT_DIR$/res/animations/AddHead.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddLArm.png" afterPath="$PROJECT_DIR$/res/animations/AddLArm.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddLLeg.png" afterPath="$PROJECT_DIR$/res/animations/AddLLeg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddRArm.png" afterPath="$PROJECT_DIR$/res/animations/AddRArm.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddRLeg.png" afterPath="$PROJECT_DIR$/res/animations/AddRLeg.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/AddTorso.png" afterPath="$PROJECT_DIR$/res/animations/AddTorso.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/animations/Death.png" afterPath="$PROJECT_DIR$/res/animations/Death.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp" afterPath="$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameobjects/graphics/sprite.h" afterPath="$PROJECT_DIR$/src/gameobjects/graphics/sprite.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scenes/game.cpp" afterPath="$PROJECT_DIR$/src/scenes/game.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scenes/game.h" afterPath="$PROJECT_DIR$/src/scenes/game.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/util/assetmanager.h" afterPath="$PROJECT_DIR$/src/util/assetmanager.h" />
     </list>
     <list id="6bc503ce-442a-4a19-af35-a17e77e526b3" name="New changelist" comment="" />
     <ignored path="Hangman.iws" />
@@ -52,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.h">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+              <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -62,60 +79,45 @@
         <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-              <folding />
+              <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
+              <folding>
+                <marker date="1455245274283" expanded="true" signature="1451:1476" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddRLeg.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/animations/AddRLeg.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="game.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scenes/game.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+              <folding>
+                <element signature="e#1350#1367#0" expanded="true" />
+              </folding>
+            </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="game.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/scenes/game.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.85020244">
-              <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-              <folding />
+              <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
+              <folding>
+                <marker date="1455247476123" expanded="true" signature="49:1689" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetmanager.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assetmanager.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/assetmanager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.38866398">
               <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Death.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/animations/Death.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddLArm.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/animations/AddLArm.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
           </provider>
         </entry>
       </file>
@@ -156,12 +158,12 @@
         <option value="$PROJECT_DIR$/res/data/words.txt" />
         <option value="$PROJECT_DIR$/src/util/assetmanager.cpp" />
         <option value="$PROJECT_DIR$/src/gameobjects/ui/button.cpp" />
-        <option value="$PROJECT_DIR$/src/util/assetmanager.h" />
-        <option value="$PROJECT_DIR$/src/gameobjects/graphics/sprite.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/scenes/game.h" />
+        <option value="$PROJECT_DIR$/src/gameobjects/graphics/sprite.h" />
         <option value="$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp" />
         <option value="$PROJECT_DIR$/src/scenes/game.cpp" />
+        <option value="$PROJECT_DIR$/src/util/assetmanager.h" />
       </list>
     </option>
   </component>
@@ -553,7 +555,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455242572102</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="updated animation code">
+      <created>1455244285274</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1455244285274</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -611,7 +619,8 @@
     <MESSAGE value="added better debug tools" />
     <MESSAGE value="animation code" />
     <MESSAGE value="fixed animations" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed animations" />
+    <MESSAGE value="updated animation code" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated animation code" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -923,10 +932,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+          <folding>
+            <element signature="e#1303#1332#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
+          <folding>
+            <marker date="1455245274283" expanded="true" signature="1451:1476" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/scenes/game.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
           <folding>
             <element signature="e#1350#1367#0" expanded="true" />
           </folding>
@@ -941,67 +986,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.cpp">
+    <entry file="file://$PROJECT_DIR$/res/animations/AddLLeg.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scenes/game.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+          <caret line="104" column="28" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="28" />
           <folding>
-            <element signature="e#1303#1332#0" expanded="true" />
+            <marker date="1455247476123" expanded="true" signature="49:1689" placeholder="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util/assetmanager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.38866398">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/animations/Death.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/animations/AddLArm.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/animations/AddRLeg.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameobjects/graphics/sprite.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scenes/game.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85020244">
-          <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
           <folding />
         </state>
       </provider>

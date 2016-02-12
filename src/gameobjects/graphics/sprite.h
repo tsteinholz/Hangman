@@ -45,15 +45,26 @@ public:
     //-----------------------------------------------------------------------------
     void Play(float x, float y, bool loop);
 
+    //-----------------------------------------------------------------------------
+    // Purpose: Set a new image to animate
+    //-----------------------------------------------------------------------------
+    void SetImage(ALLEGRO_BITMAP* image, unsigned int columns, unsigned int rows);
+
+    //-----------------------------------------------------------------------------
+    // Purpose: Stops playing the animation
+    //-----------------------------------------------------------------------------
+    void Stop();
+
     virtual void Render();
 
     virtual void Update(ALLEGRO_EVENT *event);
 
 protected:
     ALLEGRO_BITMAP* _Image;
-    int _SpriteX, _SpriteY, _Columns, _Rows;
+    int _SpriteX, _SpriteY;
+    unsigned int _Columns, _Rows;
     float _X, _Y;
-    bool _Loop;
+    bool _Loop, _Playing;
 private:
 };
 

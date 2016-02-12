@@ -51,6 +51,7 @@ protected:
     std::string _TheWord, _DisplayWord;
     Sprite* _Hangman;
 
+    unsigned int _ErrorCount;
 };
 
 
