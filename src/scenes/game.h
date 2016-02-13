@@ -58,6 +58,7 @@ protected:
     Sprite* _Hangman;
 
     unsigned int _ErrorCount;
+    bool _Won;
 
     Button *btn_Continue, *btn_Quit;
     State _State;

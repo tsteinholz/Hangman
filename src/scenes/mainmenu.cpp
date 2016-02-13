@@ -6,13 +6,23 @@ MainMenu::MainMenu() {
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
+    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
 
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
-                          [] () -> void { SetScene(new Game()); });
+                          []() -> void {
+                              SetScene(new Game());
+                              al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+                          });
     btn_Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300,
-                          [] () -> void { SetScene(new Help()); });
+                          []() -> void {
+                              SetScene(new Help());
+                              al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+                          });
     btn_Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350,
-                          [] () -> void { SetExe(false); });
+                          []() -> void {
+                              SetExe(false);
+                              al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+                          });
 }
 
 MainMenu::~MainMenu() {

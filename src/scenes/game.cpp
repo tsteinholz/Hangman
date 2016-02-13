@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game() : _ErrorCount(0), _State(Playing) {
+Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");
@@ -13,12 +13,18 @@ Game::Game() : _ErrorCount(0), _State(Playing) {
     ASSET_MANAGER.LoadImage("res/animations/AddRLeg.png", "right-leg");
     ASSET_MANAGER.LoadImage("res/animations/AddLLeg.png", "left-leg");
     ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
+    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
+    ASSET_MANAGER.LoadSound("res/sound/spring.ogg", "spring");
 
     _Hangman = new Sprite(ASSET_MANAGER.GetImage("head"), 8, 8);
     btn_Continue = new Button("Continue", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W-300, 525, [this]() -> void {
+        al_stop_samples();
+        al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         SetScene(new MainMenu());
     });
     btn_Quit = new Button("Quit", ASSET_MANAGER.GetFont("league"), 300, 525, [this]() -> void {
+        al_stop_samples();
+        al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         SetExe(false);
     });
 
@@ -26,6 +32,8 @@ Game::Game() : _ErrorCount(0), _State(Playing) {
     for (unsigned char c = 'A'; c <= 'Z'; ++c) {
         Alphabet.push_back(std::make_shared<Button>(
                 std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, [this, i, c]() -> void {
+            al_stop_samples();
+            al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             Alphabet.at((unsigned long) i)->Enabled = false;
             HandleTurn(c);
         }));
@@ -60,6 +68,9 @@ void Game::Render() {
             for (auto x : Alphabet) x->Render();
             break;
         case Conclusion:
+            al_draw_text(ASSET_MANAGER.GetFont("cubic"), al_map_rgb(255, 255, 255),
+                         ASSET_MANAGER.SCREEN_W / 2, 50,
+                         ALLEGRO_ALIGN_CENTER, _Won ? "YOU WON!" : "YOU LOSE!");
             al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
                          ASSET_MANAGER.SCREEN_W / 2, 400,
                          ALLEGRO_ALIGN_CENTER, _TheWord.c_str());
@@ -107,7 +118,7 @@ void Game::HandleTurn(char letter) {
             if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter)
                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
         }
-        if (_TheWord.compare(_DisplayWord) == 0) _State = Conclusion;
+        if (_TheWord.compare(_DisplayWord) == 0) { _State = Conclusion; _Won = true; }
     } else {
         _ErrorCount++;
 
@@ -125,6 +136,10 @@ void Game::HandleTurn(char letter) {
         if (_ErrorCount <= 3) _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 40, 132, false);
         else _Hangman->Play((ASSET_MANAGER.SCREEN_W / 2) - 64, 132, false);
 
-        if (_ErrorCount == 7) _State = Conclusion;
+        if (_ErrorCount == 7) {
+            al_stop_samples();
+            al_play_sample(ASSET_MANAGER.GetSound("spring"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+            _State = Conclusion;
+        }
     }
 }
