@@ -1,5 +1,7 @@
 #include "game.h"
 
+int Game::_Score[2] = {0, 0};
+
 Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
@@ -15,6 +17,7 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
     ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
     ASSET_MANAGER.LoadSound("res/sound/spring.ogg", "spring");
+    ASSET_MANAGER.LoadSound("res/sound/stab.ogg", "stab");
 
     _Hangman = new Sprite(ASSET_MANAGER.GetImage("head"), 8, 8);
     btn_Continue = new Button("Continue", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W-300, 525, [this]() -> void {
@@ -32,8 +35,6 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     for (unsigned char c = 'A'; c <= 'Z'; ++c) {
         Alphabet.push_back(std::make_shared<Button>(
                 std::string(1, c), ASSET_MANAGER.GetFont("league"), x, c <= 'M' ? 500 : 550, [this, i, c]() -> void {
-            al_stop_samples();
-            al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
             Alphabet.at((unsigned long) i)->Enabled = false;
             HandleTurn(c);
         }));
@@ -42,7 +43,7 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
-    for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
+    for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? "  " : "_";
 }
 
 Game::~Game() {
@@ -74,6 +75,12 @@ void Game::Render() {
             al_draw_text(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
                          ASSET_MANAGER.SCREEN_W / 2, 400,
                          ALLEGRO_ALIGN_CENTER, _TheWord.c_str());
+            al_draw_textf(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
+                          (ASSET_MANAGER.SCREEN_W / 2) - 200, 400,
+                         ALLEGRO_ALIGN_CENTER, "Wins: %i", _Score[0]);
+            al_draw_textf(ASSET_MANAGER.GetFont("league"), al_map_rgb(255, 255, 255),
+                          (ASSET_MANAGER.SCREEN_W / 2) + 200, 400,
+                         ALLEGRO_ALIGN_CENTER, "Losses: %i", _Score[1]);
 
             btn_Continue->Render();
             btn_Quit->Render();
@@ -102,24 +109,33 @@ void Game::Render() {
 }
 
 void Game::Update(ALLEGRO_EVENT *event) {
-    for (unsigned long i = 0; i < Alphabet.size(); i++) {
-        Alphabet.at(i)->Update(event);
-    }
     _Hangman->Update(event);
     if (_State == Conclusion) {
         btn_Continue->Update(event);
         btn_Quit->Update(event);
+    } else {
+        for (unsigned long i = 0; i < Alphabet.size(); i++) {
+            Alphabet.at(i)->Update(event);
+        }
     }
 }
 
 void Game::HandleTurn(char letter) {
+    al_stop_samples();
     if (_TheWord.find(letter) != std::string::npos) {
+        al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         for (unsigned long i = 0; i < _TheWord.size(); i++) {
-            if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter)
+            if (_DisplayWord.at(i) == '_' && _TheWord.at(i) == letter) {
                 std::replace(_DisplayWord.begin() + i, _DisplayWord.begin() + i + 1, '_', letter);
+            }
         }
-        if (_TheWord.compare(_DisplayWord) == 0) { _State = Conclusion; _Won = true; }
+        if (_TheWord.compare(_DisplayWord) == 0) {
+            _Won = true;
+            _Score[0]++;
+            _State = Conclusion;
+        }
     } else {
+        al_play_sample(ASSET_MANAGER.GetSound("stab"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         _ErrorCount++;
 
         switch (_ErrorCount) {
@@ -139,6 +155,7 @@ void Game::HandleTurn(char letter) {
         if (_ErrorCount == 7) {
             al_stop_samples();
             al_play_sample(ASSET_MANAGER.GetSound("spring"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+            _Score[1]++;
             _State = Conclusion;
         }
     }

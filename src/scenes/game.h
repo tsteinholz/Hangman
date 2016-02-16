@@ -51,6 +51,8 @@ public:
 
 protected:
 
+    static int _Score[2];
+
     void HandleTurn(char letter);
 
     std::vector<std::shared_ptr<Button>> Alphabet;

@@ -39,6 +39,9 @@ public:
 
     virtual void Update(ALLEGRO_EVENT *event) override;
 
+private:
+
+    Button *btn_Back;
 };
 
 

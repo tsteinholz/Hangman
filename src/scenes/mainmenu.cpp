@@ -7,6 +7,9 @@ MainMenu::MainMenu() {
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
     ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
+    ASSET_MANAGER.LoadSound("res/sound/start_sound.ogg", "start sound");
+
+    al_play_sample(ASSET_MANAGER.GetSound("start sound"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
                           []() -> void {
