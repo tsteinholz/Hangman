@@ -23,12 +23,12 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     btn_Continue = new Button("Continue", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W-300, 525, [this]() -> void {
         al_stop_samples();
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-        SetScene(new MainMenu());
+        SetScene(new Game());
     });
     btn_Quit = new Button("Quit", ASSET_MANAGER.GetFont("league"), 300, 525, [this]() -> void {
         al_stop_samples();
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
-        SetExe(false);
+        SetScene(new MainMenu());
     });
 
     float x = 125, i = 0;
