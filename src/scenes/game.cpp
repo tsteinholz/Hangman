@@ -43,7 +43,7 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     }
 
     _TheWord = ASSET_MANAGER.GetDict("words").at(rand() % ASSET_MANAGER.GetDict("words").size());
-    for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? "  " : "_";
+    for (unsigned long i = 0; i < _TheWord.size(); i++) _DisplayWord += _TheWord.at(i) == ' ' ? " " : "_";
 }
 
 Game::~Game() {
