@@ -28,6 +28,8 @@ void Sprite::Render() {
                           _X + al_get_bitmap_width(_Image) / _Rows,
                           _Y + al_get_bitmap_height(_Image) / _Columns,
                           al_map_rgb(255, 0, 255), 3);
+
+        al_draw_rectangle(_X, _Y, _X, _Y, al_map_rgb(255, 0, 255), 3);
 #endif
     }
 }

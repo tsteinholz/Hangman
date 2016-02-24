@@ -2,9 +2,9 @@
 #include "mainmenu.h"
 
 Help::Help() {
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
+    //ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
+    //ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
+    //ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
 
     btn_Back = new Button("BACK", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 550, [this]() -> void {
         al_stop_samples();

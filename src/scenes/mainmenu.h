@@ -35,7 +35,7 @@ public:
 
     MainMenu();
 
-    virtual ~MainMenu();
+    ~MainMenu();
 
     virtual void Render() override;
 

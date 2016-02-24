@@ -33,7 +33,7 @@ public:
 
     Help();
 
-    virtual ~Help();
+    ~Help();
 
     virtual void Render() override;
 

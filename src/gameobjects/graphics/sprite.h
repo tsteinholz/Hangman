@@ -59,11 +59,12 @@ public:
 
     virtual void Update(ALLEGRO_EVENT *event);
 
+    float _X, _Y;
+
 protected:
     ALLEGRO_BITMAP* _Image;
     int _SpriteX, _SpriteY;
     unsigned int _Columns, _Rows;
-    float _X, _Y;
     bool _Loop, _Playing;
 private:
 };

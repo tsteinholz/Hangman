@@ -30,7 +30,7 @@ MainMenu::MainMenu() {
 
 MainMenu::~MainMenu() {
     // TODO - never called
-    ASSET_MANAGER.DiscardAll();
+//    ASSET_MANAGER.DiscardAll();
 
     delete btn_Play;
     delete btn_Help;

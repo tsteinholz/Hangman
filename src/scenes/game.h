@@ -38,7 +38,7 @@ public:
 
     Game();
 
-    virtual ~Game();
+    ~Game();
 
     virtual void Render() override;
 
@@ -58,6 +58,9 @@ protected:
     std::vector<std::shared_ptr<Button>> Alphabet;
     std::string _TheWord, _DisplayWord;
     Sprite* _Hangman;
+    Sprite* _HangmanCLONE1;
+    Sprite* _HangmanCLONE2;
+
 
     unsigned int _ErrorCount;
     bool _Won;

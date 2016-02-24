@@ -116,23 +116,23 @@ void AssetManager::LoadDict(const char *file, const char *key) {
 }
 
 ALLEGRO_BITMAP *AssetManager::GetImage(const char *key) {
-    return _ImageMap.at(key).get();
+    return _ImageMap.find(key) != _ImageMap.end() ? _ImageMap.at(key).get() : nullptr;
 }
 
 ALLEGRO_SAMPLE *AssetManager::GetSound(const char *key) {
-    return _SoundMap.at(key).get();
+    return _SoundMap.find(key) != _SoundMap.end() ? _SoundMap.at(key).get() : nullptr;
 }
 
 ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
-    return _FontMap.at(key).get();
+    return _FontMap.find(key) != _FontMap.end() ? _FontMap.at(key).get() : nullptr;
 }
 
 const char *AssetManager::GetText(const char *key) {
-    return _TextMap.at(key);
+    return _TextMap.find(key) != _TextMap.end() ? _TextMap.at(key) : nullptr;
 }
 
 std::vector<std::string> AssetManager::GetDict(const char *key) {
-    return _DictMap.at(key);
+    return _DictMap.find(key) != _DictMap.end() ? _DictMap.at(key) : std::vector<std::string>();
 }
 
 void AssetManager::DiscardImage(const char *key) {
@@ -171,10 +171,20 @@ void AssetManager::DiscardDict(const char *key) {
 }
 
 void AssetManager::DiscardAll() {
+    for (auto it = _ImageMap.begin(); it != _ImageMap.end(); ++it)
+        DiscardImage(it->first);
     _ImageMap.clear();
+    for (auto it = _SoundMap.begin(); it != _SoundMap.end(); ++it)
+        DiscardSound(it->first);
     _SoundMap.clear();
+    for (auto it = _FontMap.begin(); it != _FontMap.end(); ++it)
+        DiscardFont(it->first);
     _FontMap.clear();
+    for (auto it = _TextMap.begin(); it != _TextMap.end(); ++it)
+        DiscardText(it->first);
     _TextMap.clear();
+    for (auto it = _DictMap.begin(); it != _DictMap.end(); ++it)
+        DiscardDict(it->first);
     _DictMap.clear();
 #ifdef DEBUG
         printf("DEBUG: Discarded All Assets");

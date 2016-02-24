@@ -20,6 +20,9 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
     ASSET_MANAGER.LoadSound("res/sound/stab.ogg", "stab");
 
     _Hangman = new Sprite(ASSET_MANAGER.GetImage("head"), 8, 8);
+    _HangmanCLONE1 = new Sprite(ASSET_MANAGER.GetImage("death"), 8, 8);
+    _HangmanCLONE2 = new Sprite(ASSET_MANAGER.GetImage("death"), 8, 8);
+
     btn_Continue = new Button("Continue", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W-300, 525, [this]() -> void {
         al_stop_samples();
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
@@ -47,6 +50,9 @@ Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
 }
 
 Game::~Game() {
+    delete _Hangman;
+    delete _HangmanCLONE1;
+    delete _HangmanCLONE2;
     ASSET_MANAGER.DiscardFont("cubic");
     ASSET_MANAGER.DiscardFont("league");
     ASSET_MANAGER.DiscardDict("res/data/words.txt");
@@ -88,6 +94,10 @@ void Game::Render() {
     }
 
     _Hangman->Render();
+//    if (_ErrorCount >= 0) {
+    _HangmanCLONE1->Render();
+    _HangmanCLONE2->Render();
+//    }
 
 
 #ifdef DEBUG //==DEBUG===============================================================================================//
@@ -110,6 +120,8 @@ void Game::Render() {
 
 void Game::Update(ALLEGRO_EVENT *event) {
     _Hangman->Update(event);
+    _HangmanCLONE1->Update(event);
+    _HangmanCLONE2->Update(event);
     if (_State == Conclusion) {
         btn_Continue->Update(event);
         btn_Quit->Update(event);
@@ -155,6 +167,8 @@ void Game::HandleTurn(char letter) {
         if (_ErrorCount == 7) {
             al_stop_samples();
             al_play_sample(ASSET_MANAGER.GetSound("spring"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+            _HangmanCLONE1->Play(_Hangman->_X + 500, 132, true);
+            _HangmanCLONE2->Play(_Hangman->_X - 500, 132, true);
             _Score[1]++;
             _State = Conclusion;
         }
