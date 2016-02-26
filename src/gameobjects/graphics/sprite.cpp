@@ -37,10 +37,10 @@ void Sprite::Render() {
 void Sprite::Update(ALLEGRO_EVENT *event) {
     if (_Playing) {
         if (event->type == ALLEGRO_EVENT_TIMER) {
-            if ((_SpriteX != _Columns - 1 && _SpriteY != _Rows - 1) || _Loop) {
-                if (_SpriteX + 1 >= _Columns - 1) {
+            if (((unsigned int)_SpriteX != _Columns - 1 && (unsigned int)_SpriteY != _Rows - 1) || _Loop) {
+                if ((unsigned int)_SpriteX + 1 >= _Columns - 1) {
                     _SpriteX = 0;
-                    _SpriteY = _SpriteY >= _Rows - 1 ? (_Loop ? 0 : _SpriteY) : _SpriteY + 1;
+                    _SpriteY = (unsigned int)_SpriteY >= _Rows - 1 ? (_Loop ? 0 : _SpriteY) : _SpriteY + 1;
                 } else {
                     _SpriteX++;
                 }

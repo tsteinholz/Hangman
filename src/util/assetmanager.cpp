@@ -1,12 +1,17 @@
 #include "assetmanager.h"
 
-std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> AssetManager::_ImageMap = {};
-std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> AssetManager::_SoundMap = {};
-std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> AssetManager::_FontMap = {};
-std::map<const char *, const char *> AssetManager::_TextMap = {};
-std::map<const char *, std::vector<std::string>> AssetManager::_DictMap = {};
+AssetManager &AssetManager::GetAssetManager() {
+    static AssetManager instance;
+    return instance;
+}
 
-AssetManager::AssetManager() {
+AssetManager::AssetManager() :
+    _ImageMap(),
+    _SoundMap(),
+    _FontMap(),
+    _TextMap(),
+    _DictMap() {
+
     if (!al_init()) {
         printf("al_init Failed!\n");
         exit(-1);
@@ -36,15 +41,18 @@ AssetManager::AssetManager() {
     al_init_ttf_addon();
     al_install_keyboard();
     al_init_image_addon();
+    //al_reserve_samples(5);
+
+#ifdef DEBUG
+    printf("DEBUG: Creating Asset Manager Instance\n");
+#endif // DEBUG
 }
 
 AssetManager::~AssetManager() {
-
-}
-
-AssetManager &AssetManager::GetAssetManager() {
-    static AssetManager instance;
-    return instance;
+    DiscardAll();
+#ifdef DEBUG
+    printf("DEBUG: Destroying Asset Manager Instance\n");
+#endif // DEBUG
 }
 
 bool AssetManager::LoadImage(const char *file, const char *key) {
@@ -56,7 +64,7 @@ bool AssetManager::LoadImage(const char *file, const char *key) {
     }
 #ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
-#endif
+#endif // DEBUG
     _ImageMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
     return true;
 }
@@ -70,7 +78,7 @@ bool AssetManager::LoadSound(const char *file, const char *key) {
     }
 #ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
-#endif
+#endif // DEBUG
     _SoundMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
     return true;
 }
@@ -84,7 +92,7 @@ bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key
     }
 #ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
-#endif
+#endif // DEBUG
     _FontMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_FONT>>(key, x));
     return true;
 }
@@ -95,7 +103,7 @@ bool AssetManager::LoadText(const char *file, const char *key) {
     //if (!x) { printf("Failed to load %s", file); return false;}
 #ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
-#endif
+#endif // DEBUG
     return false;
 }
 
@@ -111,7 +119,7 @@ void AssetManager::LoadDict(const char *file, const char *key) {
     }
 #ifdef DEBUG
     printf("DEBUG: Loaded %s\n", key); //debug
-#endif
+#endif // DEBUG
     _DictMap.insert(std::pair<const char *, std::vector<std::string>>(key, x));
 }
 
@@ -139,35 +147,35 @@ void AssetManager::DiscardImage(const char *key) {
     _ImageMap.erase(key);
 #ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
-#endif
+#endif // DEBUG
 }
 
 void AssetManager::DiscardSound(const char *key) {
     _SoundMap.erase(key);
 #ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
-#endif
+#endif // DEBUG
 }
 
 void AssetManager::DiscardFont(const char *key) {
     _FontMap.erase(key);
 #ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
-#endif
+#endif // DEBUG
 }
 
 void AssetManager::DiscardText(const char *key) {
     _TextMap.erase(key);
 #ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
-#endif
+#endif // DEBUG
 }
 
 void AssetManager::DiscardDict(const char *key) {
     _DictMap.erase(key);
 #ifdef DEBUG
     printf("DEBUG: Discarded %s\n", key); //debug
-#endif
+#endif // DEBUG
 }
 
 void AssetManager::DiscardAll() {
@@ -187,6 +195,6 @@ void AssetManager::DiscardAll() {
         DiscardDict(it->first);
     _DictMap.clear();
 #ifdef DEBUG
-        printf("DEBUG: Discarded All Assets");
+        printf("DEBUG: Discarded All Assets\n");
 #endif // DEBUG
 }

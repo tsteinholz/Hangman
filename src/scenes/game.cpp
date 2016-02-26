@@ -2,7 +2,12 @@
 
 int Game::_Score[2] = {0, 0};
 
-Game::Game() : _ErrorCount(0), _State(Playing), _Won(false) {
+Game::Game() :
+    _ErrorCount(0),
+    _Won(false),
+    _State(Playing)
+    {
+
     ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");

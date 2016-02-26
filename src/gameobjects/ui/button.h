@@ -58,9 +58,8 @@ public:
     ALLEGRO_COLOR DEBUG_COLOR = al_map_rgb(255, 0, 255);
 
 protected:
-
-    ALLEGRO_FONT *_Font;
     std::string _Text;
+    ALLEGRO_FONT *_Font;
     float _X, _Y;
     std::function <void()>_HandleFunction;
 };

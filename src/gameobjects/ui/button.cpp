@@ -1,7 +1,15 @@
 #include "button.h"
 
 Button::Button(std::string text, ALLEGRO_FONT *font, float x, float y, const std::function <void()> f) :
-        _Text(text), _Font(font), _X(x), _Y(y), Pressed(false), Hover(false), Enabled(true), _HandleFunction(f) { }
+        Pressed(false),
+        Hover(false),
+        Enabled(true),
+        _Text(text),
+        _Font(font),
+        _X(x),
+        _Y(y),
+        _HandleFunction(f)
+        { }
 
 Button::~Button() {
     al_destroy_font(_Font);

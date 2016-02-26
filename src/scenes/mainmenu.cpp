@@ -13,13 +13,18 @@ MainMenu::MainMenu() {
 
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
                           []() -> void {
-                              SetScene(new Game());
-                              al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+                                ASSET_MANAGER.DiscardFont("cubic-header");
+                                ASSET_MANAGER.DiscardFont("cubic-credits");
+                                ASSET_MANAGER.DiscardFont("league");
+                                ASSET_MANAGER.DiscardSound("gui-click");
+                                ASSET_MANAGER.DiscardSound("start sound");
+                                SetScene(new Game());
+                                al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                           });
     btn_Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300,
-                          []() -> void {
-                              SetScene(new Help());
-                              al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+                          [this]() -> void {
+                                SetScene(new Help());
+                                al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                           });
     btn_Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350,
                           []() -> void {
@@ -29,9 +34,6 @@ MainMenu::MainMenu() {
 }
 
 MainMenu::~MainMenu() {
-    // TODO - never called
-//    ASSET_MANAGER.DiscardAll();
-
     delete btn_Play;
     delete btn_Help;
     delete btn_Quit;

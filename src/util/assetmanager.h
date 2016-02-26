@@ -63,7 +63,7 @@ public:
     // param file: The location on disk of the asset
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static bool LoadImage(const char *file, const char *key = "");
+    bool LoadImage(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Load a new sound for the game to use. This function will store an
@@ -73,7 +73,7 @@ public:
     // param file: The location on disk of the asset
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static bool LoadSound(const char *file, const char *key = "");
+    bool LoadSound(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Load a new font for the game to use. This function will store an
@@ -84,7 +84,7 @@ public:
     // param size: The font size you need
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static bool LoadFont(const char *file, unsigned int size, const char *key = "");
+    bool LoadFont(const char *file, unsigned int size, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Load some text for the game to use. This function will store an
@@ -94,7 +94,7 @@ public:
     // param file: The location on disk of the asset
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static bool LoadText(const char *file, const char *key = "");
+    bool LoadText(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Load some dict for the game to use. This function will store an
@@ -104,7 +104,7 @@ public:
     // param file: The location on disk of the asset
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void LoadDict(const char *file, const char *key = "");
+    void LoadDict(const char *file, const char *key = "");
 
     //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
@@ -113,7 +113,7 @@ public:
     //
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void DiscardImage(const char *key);
+    void DiscardImage(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
@@ -122,7 +122,7 @@ public:
     //
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void DiscardSound(const char *key);
+    void DiscardSound(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
@@ -131,7 +131,7 @@ public:
     //
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void DiscardFont(const char *key);
+    void DiscardFont(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
@@ -140,7 +140,7 @@ public:
     //
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void DiscardText(const char *key);
+    void DiscardText(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Destroys an asset that is presumably no longer needed by the game.
@@ -149,44 +149,44 @@ public:
     //
     // param key: The string you use to receive this asset (defaults to the path str)
     //-----------------------------------------------------------------------------
-    static void DiscardDict(const char *key);
+    void DiscardDict(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the image
     //
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
-    static ALLEGRO_BITMAP *GetImage(const char *key);
+    ALLEGRO_BITMAP *GetImage(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the sound
     //
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
-    static ALLEGRO_SAMPLE *GetSound(const char *key);
+    ALLEGRO_SAMPLE *GetSound(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the font
     //
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
-    static ALLEGRO_FONT *GetFont(const char *key);
+    ALLEGRO_FONT *GetFont(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the text
     //
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
-    static const char *GetText(const char *key);
+    const char *GetText(const char *key);
 
     //-----------------------------------------------------------------------------
     // Purpose: Returns the dict
     //
     // param key: The string used to store the asset in memory
     //-----------------------------------------------------------------------------
-    static std::vector<std::string> GetDict(const char *key);
+    std::vector<std::string> GetDict(const char *key);
 
-    static void DiscardAll();
+    void DiscardAll();
 
     const unsigned int SCREEN_W = 850, SCREEN_H = 650;
 
@@ -194,13 +194,13 @@ private:
 
     AssetManager();
 
-    virtual ~AssetManager();
+    ~AssetManager();
 
-    static std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> _ImageMap;
-    static std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> _SoundMap;
-    static std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> _FontMap;
-    static std::map<const char *, const char *> _TextMap;
-    static std::map<const char *, std::vector<std::string>> _DictMap;
+    std::map<const char *, std::shared_ptr<ALLEGRO_BITMAP>> _ImageMap;
+    std::map<const char *, std::shared_ptr<ALLEGRO_SAMPLE>> _SoundMap;
+    std::map<const char *, std::shared_ptr<ALLEGRO_FONT>> _FontMap;
+    std::map<const char *, const char *> _TextMap;
+    std::map<const char *, std::vector<std::string>> _DictMap;
 
 };
 
