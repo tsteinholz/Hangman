@@ -3,13 +3,12 @@
 bool Scene::Executing = true;
 
 MainMenu::MainMenu() {
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
-    ASSET_MANAGER.LoadSound("res/sound/start_sound.ogg", "start sound");
-
     al_play_sample(ASSET_MANAGER.GetSound("start sound"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
+
+    printf("cubic-header is loaded: %s\n", ASSET_MANAGER.GetFont("cubic-header") != nullptr ? "true" : "false");
+    printf("league is loaded: %s\n", ASSET_MANAGER.GetFont("league") != nullptr ? "true" : "false");
+    printf("background is loaded: %s\n", ASSET_MANAGER.GetImage("background") != nullptr ? "true" : "false");
+    printf("gui-click is loaded: %s\n", ASSET_MANAGER.GetFont("gui-click") != nullptr ? "true" : "false");
 
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
                           []() -> void {
@@ -21,11 +20,13 @@ MainMenu::MainMenu() {
                                 SetScene(new Game());
                                 al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                           });
+
     btn_Help = new Button((char *) "HELP", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 300,
                           [this]() -> void {
                                 SetScene(new Help());
                                 al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                           });
+
     btn_Quit = new Button((char *) "QUIT", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 350,
                           []() -> void {
                               SetExe(false);

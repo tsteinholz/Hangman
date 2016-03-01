@@ -11,9 +11,7 @@ Button::Button(std::string text, ALLEGRO_FONT *font, float x, float y, const std
         _HandleFunction(f)
         { }
 
-Button::~Button() {
-    al_destroy_font(_Font);
-}
+Button::~Button() { }
 
 void Button::Render() {
     al_draw_text(_Font, Hover ? HOVER_COLOR : Pressed ? CLICKED_COLOR : Enabled ? ENABLED_COLOR : DISABLED_COLOR,

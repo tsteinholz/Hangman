@@ -4,9 +4,7 @@
 Help::Help() {
 
     printf("DEBUG: Help constructor\n");
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
+
 
     printf("cubic-header is loaded: %s\n", ASSET_MANAGER.GetFont("cubic-header") != nullptr ? "true" : "false");
     printf("league is loaded: %s\n", ASSET_MANAGER.GetFont("league") != nullptr ? "true" : "false");

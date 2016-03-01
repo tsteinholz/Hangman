@@ -6,23 +6,6 @@ Game::Game() :
     _ErrorCount(0),
     _Won(false),
     _State(Playing) {
-
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
-    ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
-    ASSET_MANAGER.LoadImage("res/animations/AddHead.png", "head");
-    ASSET_MANAGER.LoadImage("res/animations/AddTorso.png", "torso");
-    ASSET_MANAGER.LoadImage("res/animations/AddRArm.png", "right-arm");
-    ASSET_MANAGER.LoadImage("res/animations/AddLArm.png", "left-arm");
-    ASSET_MANAGER.LoadImage("res/animations/AddRLeg.png", "right-leg");
-    ASSET_MANAGER.LoadImage("res/animations/AddLLeg.png", "left-leg");
-    ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
-    ASSET_MANAGER.LoadSound("res/sound/spring.ogg", "spring");
-    ASSET_MANAGER.LoadSound("res/sound/stab.ogg", "stab");
-
     _Hangman = new Sprite(ASSET_MANAGER.GetImage("head"), 8, 8);
     _HangmanCLONE1 = new Sprite(ASSET_MANAGER.GetImage("death"), 8, 8);
     _HangmanCLONE2 = new Sprite(ASSET_MANAGER.GetImage("death"), 8, 8);
@@ -32,6 +15,7 @@ Game::Game() :
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
         SetScene(new Game());
     });
+
     btn_Quit = new Button("Quit", ASSET_MANAGER.GetFont("league"), 300, 525, [this]() -> void {
         al_stop_samples();
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
@@ -57,9 +41,6 @@ Game::~Game() {
     delete _Hangman;
     delete _HangmanCLONE1;
     delete _HangmanCLONE2;
-    ASSET_MANAGER.DiscardFont("cubic");
-    ASSET_MANAGER.DiscardFont("league");
-    ASSET_MANAGER.DiscardDict("res/data/words.txt");
 }
 
 void Game::Render() {

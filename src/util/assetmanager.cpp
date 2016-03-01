@@ -55,60 +55,60 @@ AssetManager::~AssetManager() {
 #endif // DEBUG
 }
 
-bool AssetManager::LoadImage(const char *file, const char *key) {
-    key = !key ? file : key;
-    std::shared_ptr<ALLEGRO_BITMAP> x(al_load_bitmap(file), al_destroy_bitmap);
+bool AssetManager::LoadImage(std::string file, std::string key) {
+    key = key == "" ? file : key;
+    std::shared_ptr<ALLEGRO_BITMAP> x(al_load_bitmap(file.c_str()), al_destroy_bitmap);
     if (!x) {
-        fprintf(stderr, "Failed to load %s\n", file);
+        fprintf(stderr, "Failed to load %s\n", file.c_str());
         return false;
     }
 #ifdef DEBUG
-    printf("DEBUG: Loaded %s\n", key); //debug
+    printf("DEBUG: Loaded %s\n", key.c_str()); //debug
 #endif // DEBUG
-    _ImageMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
+    _ImageMap.insert(std::pair<std::string, std::shared_ptr<ALLEGRO_BITMAP>>(key, x));
     return true;
 }
 
-bool AssetManager::LoadSound(const char *file, const char *key) {
-    key = !key ? file : key;
-    std::shared_ptr<ALLEGRO_SAMPLE> x(al_load_sample(file), al_destroy_sample);
+bool AssetManager::LoadSound(std::string file, std::string key) {
+    key = key == "" ? file : key;
+    std::shared_ptr<ALLEGRO_SAMPLE> x(al_load_sample(file.c_str()), al_destroy_sample);
     if (!x) {
-        fprintf(stderr, "Failed to load %s\n", file);
+        fprintf(stderr, "Failed to load %s\n", file.c_str());
         return false;
     }
 #ifdef DEBUG
-    printf("DEBUG: Loaded %s\n", key); //debug
+    printf("DEBUG: Loaded %s\n", key.c_str()); //debug
 #endif // DEBUG
-    _SoundMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
+    _SoundMap.insert(std::pair<std::string, std::shared_ptr<ALLEGRO_SAMPLE>>(key, x));
     return true;
 }
 
-bool AssetManager::LoadFont(const char *file, unsigned int size, const char *key) {
-    key = !key ? file : key;
-    std::shared_ptr<ALLEGRO_FONT> x(al_load_font(file, size, 0), al_destroy_font);
+bool AssetManager::LoadFont(std::string file, unsigned int size, std::string key) {
+    key = key == "" ? file : key;
+    std::shared_ptr<ALLEGRO_FONT> x(al_load_font(file.c_str(), size, 0), al_destroy_font);
     if (!x) {
-        fprintf(stderr, "Failed to load %s\n", file);
+        fprintf(stderr, "Failed to load %s\n", file.c_str());
         return false;
     }
 #ifdef DEBUG
-    printf("DEBUG: Loaded %s\n", key); //debug
+    printf("DEBUG: Loaded %s\n", key.c_str()); //debug
 #endif // DEBUG
-    _FontMap.insert(std::pair<const char *, std::shared_ptr<ALLEGRO_FONT>>(key, x));
+    _FontMap.insert(std::pair<std::string, std::shared_ptr<ALLEGRO_FONT>>(key, x));
     return true;
 }
 
-bool AssetManager::LoadText(const char *file, const char *key) {
-    key = !key ? file : key;
+bool AssetManager::LoadText(std::string file, std::string key) {
+    key = key == "" ? file : key;
     // TODO
     //if (!x) { printf("Failed to load %s", file); return false;}
 #ifdef DEBUG
-    printf("DEBUG: Loaded %s\n", key); //debug
+    printf("DEBUG: Loaded %s\n", key.c_str()); //debug
 #endif // DEBUG
     return false;
 }
 
-void AssetManager::LoadDict(const char *file, const char *key) {
-    key = !key ? file : key;
+void AssetManager::LoadDict(std::string file, std::string key) {
+    key = key == "" ? file : key;
     std::vector<std::string> x;
     std::ifstream dict(file);
     std::string line = "";
@@ -118,63 +118,63 @@ void AssetManager::LoadDict(const char *file, const char *key) {
         x.push_back(line);
     }
 #ifdef DEBUG
-    printf("DEBUG: Loaded %s\n", key); //debug
+    printf("DEBUG: Loaded %s\n", key.c_str()); //debug
 #endif // DEBUG
-    _DictMap.insert(std::pair<const char *, std::vector<std::string>>(key, x));
+    _DictMap.insert(std::pair<std::string, std::vector<std::string>>(key, x));
 }
 
-ALLEGRO_BITMAP *AssetManager::GetImage(const char *key) {
+ALLEGRO_BITMAP *AssetManager::GetImage(std::string key) {
     return _ImageMap.find(key) != _ImageMap.end() ? _ImageMap.at(key).get() : nullptr;
 }
 
-ALLEGRO_SAMPLE *AssetManager::GetSound(const char *key) {
+ALLEGRO_SAMPLE *AssetManager::GetSound(std::string key) {
     return _SoundMap.find(key) != _SoundMap.end() ? _SoundMap.at(key).get() : nullptr;
 }
 
-ALLEGRO_FONT *AssetManager::GetFont(const char *key) {
+ALLEGRO_FONT *AssetManager::GetFont(std::string key) {
     return _FontMap.find(key) != _FontMap.end() ? _FontMap.at(key).get() : nullptr;
 }
 
-const char *AssetManager::GetText(const char *key) {
-    return _TextMap.find(key) != _TextMap.end() ? _TextMap.at(key) : nullptr;
+std::string AssetManager::GetText(std::string key) {
+    return _TextMap.find(key) != _TextMap.end() ? _TextMap.at(key) : "";
 }
 
-std::vector<std::string> AssetManager::GetDict(const char *key) {
+std::vector<std::string> AssetManager::GetDict(std::string key) {
     return _DictMap.find(key) != _DictMap.end() ? _DictMap.at(key) : std::vector<std::string>();
 }
 
-void AssetManager::DiscardImage(const char *key) {
+void AssetManager::DiscardImage(std::string key) {
     _ImageMap.erase(key);
 #ifdef DEBUG
-    printf("DEBUG: Discarded %s\n", key); //debug
+    printf("DEBUG: Discarded %s\n", key.c_str()); //debug
 #endif // DEBUG
 }
 
-void AssetManager::DiscardSound(const char *key) {
+void AssetManager::DiscardSound(std::string key) {
     _SoundMap.erase(key);
 #ifdef DEBUG
-    printf("DEBUG: Discarded %s\n", key); //debug
+    printf("DEBUG: Discarded %s\n", key.c_str()); //debug
 #endif // DEBUG
 }
 
-void AssetManager::DiscardFont(const char *key) {
+void AssetManager::DiscardFont(std::string key) {
     _FontMap.erase(key);
 #ifdef DEBUG
-    printf("DEBUG: Discarded %s\n", key); //debug
+    printf("DEBUG: Discarded %s\n", key.c_str()); //debug
 #endif // DEBUG
 }
 
-void AssetManager::DiscardText(const char *key) {
+void AssetManager::DiscardText(std::string key) {
     _TextMap.erase(key);
 #ifdef DEBUG
-    printf("DEBUG: Discarded %s\n", key); //debug
+    printf("DEBUG: Discarded %s\n", key.c_str()); //debug
 #endif // DEBUG
 }
 
-void AssetManager::DiscardDict(const char *key) {
+void AssetManager::DiscardDict(std::string key) {
     _DictMap.erase(key);
 #ifdef DEBUG
-    printf("DEBUG: Discarded %s\n", key); //debug
+    printf("DEBUG: Discarded %s\n", key.c_str()); //debug
 #endif // DEBUG
 }
 
