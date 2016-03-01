@@ -5,18 +5,8 @@ bool Scene::Executing = true;
 MainMenu::MainMenu() {
     al_play_sample(ASSET_MANAGER.GetSound("start sound"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 
-    printf("cubic-header is loaded: %s\n", ASSET_MANAGER.GetFont("cubic-header") != nullptr ? "true" : "false");
-    printf("league is loaded: %s\n", ASSET_MANAGER.GetFont("league") != nullptr ? "true" : "false");
-    printf("background is loaded: %s\n", ASSET_MANAGER.GetImage("background") != nullptr ? "true" : "false");
-    printf("gui-click is loaded: %s\n", ASSET_MANAGER.GetFont("gui-click") != nullptr ? "true" : "false");
-
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,
                           []() -> void {
-                                ASSET_MANAGER.DiscardFont("cubic-header");
-                                ASSET_MANAGER.DiscardFont("cubic-credits");
-                                ASSET_MANAGER.DiscardFont("league");
-                                ASSET_MANAGER.DiscardSound("gui-click");
-                                ASSET_MANAGER.DiscardSound("start sound");
                                 SetScene(new Game());
                                 al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
                           });

@@ -3,14 +3,6 @@
 
 Help::Help() {
 
-    printf("DEBUG: Help constructor\n");
-
-
-    printf("cubic-header is loaded: %s\n", ASSET_MANAGER.GetFont("cubic-header") != nullptr ? "true" : "false");
-    printf("league is loaded: %s\n", ASSET_MANAGER.GetFont("league") != nullptr ? "true" : "false");
-    printf("background is loaded: %s\n", ASSET_MANAGER.GetImage("background") != nullptr ? "true" : "false");
-    printf("gui-click is loaded: %s\n", ASSET_MANAGER.GetFont("gui-click") != nullptr ? "true" : "false");
-
     btn_Back = new Button("BACK", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 550, [this]() -> void {
         al_stop_samples();
         al_play_sample(ASSET_MANAGER.GetSound("gui-click"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);

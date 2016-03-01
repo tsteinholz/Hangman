@@ -54,14 +54,17 @@ int main() {
 
     al_start_timer(timer);
 
-    // TODO : Optimize
+    // background gradient
     ASSET_MANAGER.LoadImage("res/graphics/background.png", "background");
-
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic");
+    // data
+    ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
+    // fonts
+    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
+    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 125, "league-fancy");
     ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "league-credits");
-    ASSET_MANAGER.LoadDict("res/data/words.txt", "words");
+    // animations
     ASSET_MANAGER.LoadImage("res/animations/AddHead.png", "head");
     ASSET_MANAGER.LoadImage("res/animations/AddTorso.png", "torso");
     ASSET_MANAGER.LoadImage("res/animations/AddRArm.png", "right-arm");
@@ -69,17 +72,11 @@ int main() {
     ASSET_MANAGER.LoadImage("res/animations/AddRLeg.png", "right-leg");
     ASSET_MANAGER.LoadImage("res/animations/AddLLeg.png", "left-leg");
     ASSET_MANAGER.LoadImage("res/animations/Death.png", "death");
+    // sounds
     ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
     ASSET_MANAGER.LoadSound("res/sound/spring.ogg", "spring");
     ASSET_MANAGER.LoadSound("res/sound/stab.ogg", "stab");
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 25, "cubic-credits");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 40, "league");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
     ASSET_MANAGER.LoadSound("res/sound/start_sound.ogg", "start sound");
-    ASSET_MANAGER.LoadFont("res/fonts/cubic.ttf", 80, "cubic-header");
-    ASSET_MANAGER.LoadFont("res/fonts/league-gothic.ttf", 45, "league");
-    ASSET_MANAGER.LoadSound("res/sound/zipclick.ogg", "gui-click");
 
     bool render = true;
     float bgx = ASSET_MANAGER.SCREEN_W / 2,
