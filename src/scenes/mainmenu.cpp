@@ -3,6 +3,7 @@
 bool Scene::Executing = true;
 
 MainMenu::MainMenu() {
+
     al_play_sample(ASSET_MANAGER.GetSound("start sound"), 1, 0, 1, ALLEGRO_PLAYMODE_ONCE, NULL);
 
     btn_Play = new Button((char *) "PLAY", ASSET_MANAGER.GetFont("league"), ASSET_MANAGER.SCREEN_W / 2, 250,

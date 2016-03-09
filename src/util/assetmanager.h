@@ -41,7 +41,7 @@
 #include <vector>
 
 #define ASSET_MANAGER AssetManager::GetAssetManager()
-//#define DEBUG
+#define DEBUG
 
 //-----------------------------------------------------------------------------
 // Purpose: A singleton class that manages all the assets in the game
@@ -187,6 +187,8 @@ public:
     std::vector<std::string> GetDict(std::string key);
 
     void DiscardAll();
+
+    void PrintCurrentData();
 
     const unsigned int SCREEN_W = 850, SCREEN_H = 650;
 

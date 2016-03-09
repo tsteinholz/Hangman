@@ -50,6 +50,7 @@ public:
     //-----------------------------------------------------------------------------
     static inline void SetScene(Scene *scene) {
 //        ASSET_MANAGER.DiscardAll(); // TODO : Fix asset manager
+        ASSET_MANAGER.PrintCurrentData();
         delete Current;
         Current = scene;
     }

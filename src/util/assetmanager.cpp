@@ -198,3 +198,19 @@ void AssetManager::DiscardAll() {
         printf("DEBUG: Discarded All Assets\n");
 #endif // DEBUG
 }
+
+void AssetManager::PrintCurrentData() {
+#ifdef DEBUG
+        printf("DEBUG: LISTING ALL ASSETS\n");
+        for (auto it = _ImageMap.begin(); it != _ImageMap.end(); ++it)
+            printf("\timage: %s \t\t- loaded %s\n", it->first.c_str(), it->second != nullptr ? "true" : "false");
+        for (auto it = _SoundMap.begin(); it != _SoundMap.end(); ++it)
+            printf("\tsound: %s \t\t- loaded %s\n", it->first.c_str(), it->second != nullptr ? "true" : "false");
+        for (auto it = _FontMap.begin(); it != _FontMap.end(); ++it)
+            printf("\tfont: %s \t\t- loaded %s\n", it->first.c_str(), it->second != nullptr ? "true" : "false");
+        for (auto it = _TextMap.begin(); it != _TextMap.end(); ++it)
+            printf("\ttext: %s \t\t- loaded %s\n", it->first.c_str(), it->second != "" ? "true" : "false");
+        for (auto it = _DictMap.begin(); it != _DictMap.end(); ++it)
+            printf("\tdict: %s \t\t- loaded %s\n", it->first.c_str(), it->second.empty() ? "false" : "true");
+#endif // DEBUG
+}
